@@ -11,3 +11,13 @@
 #quotes li {
 	font-family: Reenie Beanie, Comic Sans MS, Times New Roman, sans-serif, 华文行楷, 微软雅黑;
 }
+
+#page_board {
+	float: left;
+	min-width: 512px;
+}
+
+#page_bar {
+	float: left;
+	min-width: 128px;
+}
