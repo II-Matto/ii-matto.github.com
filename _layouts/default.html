@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+
+	<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+
+	<link rel="stylesheet" href="css/default.css" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Reenie+Beanie" />
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</head>
+
+<body>
+	<nav id="page_nav">
+		<ul>
+			<li><a href="index/dashboard">Dashboard</a></li>
+			<li><a href="index/misc">MISC</li>
+		</ul>
+	</nav>
+
+	<section>
+		{{ content }}
+	</section>
+
+	<footer id="copyright">
+		{% for line in site.copyright %}
+			<p>{{ line }}</p>
+		{% endfor %}
+	</footer>
+</body>
+
+</html>

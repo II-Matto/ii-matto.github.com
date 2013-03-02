@@ -1,0 +1,10 @@
+#page_nav {
+	background: blue;
+	position: relative;
+	float: right;
+	width: 100%;
+}
+
+#page_nav ul {
+	list-style: none;
+}

@@ -1,0 +1,13 @@
+#page_header {
+	background: black;
+	width: 100%;
+	height: 100px;
+}
+
+#quotes {
+	list-style: none;
+}
+
+#quotes li {
+	font-family: Reenie Beanie, Comic Sans MS, Times New Roman, sans-serif, 华文行楷, 微软雅黑;
+}
