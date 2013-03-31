@@ -16,7 +16,7 @@ float: left;
 width: 270px;
 height: 197px;
 overflow: hidden;
-margin: 0px 7px;
+margin: 0px 7px 7px 0px;
 }
 
 #nav-cover {
@@ -41,7 +41,6 @@ top: 0%;
 margin-left: 0px;
 margin-top: 10px;
 background: rgba(100, 200, 200, 0.5);
-padding: 5px;
 }
 
 #nav-items li {
