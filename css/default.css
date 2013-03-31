@@ -41,12 +41,11 @@ top: 0%;
 margin-left: 0px;
 margin-top: 10px;
 background: rgba(100, 200, 200, 0.5);
-padding: 0px;
+padding: 3px;
 }
 
 #nav-items li {
 margin: 3px 6px;
-padding: 3px 3px;
 width: 98px;
 background: #eee;
 }
