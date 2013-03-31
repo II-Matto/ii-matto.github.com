@@ -74,5 +74,5 @@ display: inline-block;
 
 
 #copyright {
-float: clear;
+clear: both;
 }
