@@ -76,5 +76,5 @@ display: inline-block;
 
 #copyright {
 clear: both;
-float: center;
+text-align: center;
 }
