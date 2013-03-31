@@ -8,7 +8,7 @@
 	var nav_items = nav_wrapper.querySelector("#nav-items");
 
 	var NAV_WRAPPER_WIDTH = nav_wrapper.clientWidth;
-	var EXTRA_MARGIN = 13;
+	var EXTRA_MARGIN = 14;
 	var CONTENT_WIDTH = document.body.clientWidth - NAV_WRAPPER_WIDTH - EXTRA_MARGIN;
 	content_wrapper.setAttribute("style", "width: " + CONTENT_WIDTH + "px;");
 

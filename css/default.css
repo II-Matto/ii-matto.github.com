@@ -46,8 +46,9 @@ padding: 5px;
 
 #nav-items li {
 margin: 3px 0px;
-width: 98px;
+width: 105px;
 background: #eee;
+padding: 0px;
 }
 
 #nav-items li a {
