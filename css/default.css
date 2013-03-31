@@ -71,3 +71,8 @@ display: none;
 #nav-items li:hover span {
 display: inline-block;
 }
+
+
+#copyright {
+display: block;
+}
