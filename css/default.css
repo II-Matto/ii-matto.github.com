@@ -16,7 +16,7 @@ float: left;
 width: 25%;
 height: 197px;
 overflow: hidden;
-margin: 5px 5px;
+margin: 3px 3px;
 }
 
 #nav-cover {
@@ -54,7 +54,7 @@ background: #eee;
 #nav-items li a {
 text-decoration: none;
 color: black;
-font-size: 1.3em;
+font-size: 1.2em;
 }
 
 #nav-items li a:hover {
@@ -66,6 +66,7 @@ background: rgba(200, 100, 100, 0.5);
 }
 
 #nav-items li span {
+font-size: 0.8em;
 display: none;
 }
 
@@ -76,5 +77,5 @@ display: inline-block;
 
 #copyright {
 clear: both;
-margin: auto;
+float: center;
 }
