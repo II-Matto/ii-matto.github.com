@@ -13,14 +13,15 @@ float: left;
 #nav-wrapper {
 background: rgba(20, 100, 100, 0.6);
 float: left;
-width: 270px;
+width: 30%;
 height: 197px;
 overflow: hidden;
 }
 
 #nav-cover {
 display: inline-block;
-width: 125px;
+min-width: 125px;
+width: 48%;
 height: 177px;
 position: relative;
 left: 50%;
@@ -75,4 +76,5 @@ display: inline-block;
 
 #copyright {
 clear: both;
+margin: auto;
 }
