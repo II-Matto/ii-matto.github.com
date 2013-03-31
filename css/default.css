@@ -5,7 +5,6 @@ background-size: cover;
 
 #content-wrapper {
 background: rgba(100, 200, 200, 0.7);
-width: 70%;
 min-width: 640px;
 float: left;
 }
@@ -13,7 +12,7 @@ float: left;
 #nav-wrapper {
 background: rgba(20, 100, 100, 0.6);
 float: left;
-width: 25%;
+width: 270;
 height: 197px;
 overflow: hidden;
 margin: 3px 3px;
