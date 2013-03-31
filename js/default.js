@@ -1,4 +1,4 @@
-function() {
+(function() {
 	var nav_wrapper = document.querySelector("#nav-wrapper");
 	nav_wrapper.addEventListener("mouseover", showNav, false);
 	nav_wrapper.addEventListener("mouseout", hideNav, false);
