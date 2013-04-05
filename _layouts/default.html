@@ -7,30 +7,37 @@
 
 	<title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
 
-	<link rel="stylesheet" href="css/default.css" />
+	<link rel="stylesheet" href="../css/default.css" />
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Reenie+Beanie" />
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 </head>
 
-<body>	
+<body>
+	<img id="tsuna" src="../img/tsuna.png" />
+
+	<nav id="site-nav">
+		<ul>
+			<li><a href="">条目1</a></li>
+			<li><a href="">条目2</a></li>
+			<li><a href="">条目3</a></li>
+			<li><a href="">条目4</a></li>
+			<li><a href="">条目5</a></li>
+			<li><a href="">条目6</a></li>
+		</ul>
+	</nav>
+
 	<div id="content-wrapper">
 		{{ content }}
 	</div>
-	
-	<div id="nav-wrapper">
-		<img id="nav-cover" src="../img/nav_cover.jpg" />
-		<ul id="nav-items">
-			<li><a href="index/dashboard">Dashboard</a><br><span>What's new recently.</span></li>
-			<li><a href="index/misc">MISC等</a><br><span>Some other things.</span></li>
-		</ul>
-	</div>
 
+	<!--
 	<div id="copyright">
 		{% for line in site.copyright %}
 			<p>{{ line }}</p>
 		{% endfor %}
 	</div>
+	-->
 
 	<script src="../js/default.js"></script>
 </body>

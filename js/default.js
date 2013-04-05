@@ -1,4 +1,5 @@
 (function() {
+	/*
  	var content_wrapper = document.querySelector("#content-wrapper");
 	var nav_wrapper = document.querySelector("#nav-wrapper");
 	nav_wrapper.addEventListener("mouseover", showNav, false);
@@ -25,4 +26,5 @@
 		style = "display: none;";
 		nav_items.setAttribute("style", style);
 	}
+	*/
 })();
