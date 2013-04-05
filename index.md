@@ -1,16 +1,22 @@
 ---
 layout: index
-title: Test Index
-description: This is a test.
+title: II-Matto
+abstract: Pensiero Realizzare.
 ---
 
-<ul>
-	{% for post in site.categories.test %}
-	<li>
-	    <h2>
-		<a href="{{ post.url }}">{{ post.title }}</a>
-	    </h2>
-	    <span>{{ post.description }}</span>
-	</li>
+<div id="abstract-wrapper">
+	{% for post in site.categories.active %}
+	<article>
+		<h2>{{ post.title }}</h2>
+		<p class="abstract">{{ post.abstract }}</p>
+	</article>
 	{% endfor %}
-</ul>
+</div>
+
+<div id="category-wrapper">
+	<ul id="category-list">
+		{% for category in site %}
+		<li><h3>{{ category.name }}</h3></li>
+		{% endfor %}
+	</ul>
+</div>
