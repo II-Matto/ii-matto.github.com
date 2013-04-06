@@ -13,7 +13,7 @@ abstract: Pensiero Realizzare.
 		<div class="tag-wrapper">
 			<span>标签：</span>
 			<ul class="tag-list">
-				{% for tag in page.tags %}
+				{% for tag in post.tags %}
 				<li>{{ tag }}</li>
 				{% endfor %}
 			</ul>
