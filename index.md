@@ -1,8 +1,10 @@
 ---
-layout: index
+layout: default
 title: II-Matto
 abstract: Pensiero Realizzare.
 ---
+
+<link rel="stylesheet" href="../css/index.css" />
 
 <div id="abstract-wrapper">
 	{% for post in site.categories.notes %}
