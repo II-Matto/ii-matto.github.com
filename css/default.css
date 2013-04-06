@@ -7,7 +7,7 @@ body {
 #tsuna {
 	width: 150px;
 	height: 210px;
-	position: absolute;
+	position: fixed;
 	top: 100%;
 	left: 100%;
 	margin-top: -210px;
@@ -15,7 +15,7 @@ body {
 }
 
 #site-nav {
-	position: absolute;
+	position: fixed;
 	left: 100%;
 	top: 0%;
 	margin-top: 0px;
