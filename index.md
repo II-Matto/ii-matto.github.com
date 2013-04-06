@@ -5,7 +5,7 @@ abstract: Pensiero Realizzare.
 ---
 
 <div id="abstract-wrapper">
-	{% for post in site.categories.active %}
+	{% for post in site.categories.notes %}
 	<article>
 		<h2>{{ post.title }}</h2>
 		<p class="abstract">{{ post.abstract }}</p>
@@ -13,6 +13,7 @@ abstract: Pensiero Realizzare.
 	{% endfor %}
 </div>
 
+<!--
 <div id="category-wrapper">
 	<ul id="category-list">
 		{% for category in site %}
@@ -20,3 +21,4 @@ abstract: Pensiero Realizzare.
 		{% endfor %}
 	</ul>
 </div>
+-->
