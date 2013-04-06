@@ -30,11 +30,6 @@ body {
 
 #site-nav ul li {
 	float: left;
-	padding: 0px;
-	margin: 0px;
-}
-
-#site-nav ul li a {
 	width: 1.2em;
 	padding: 10px 3px;
 	margin: 0px 6px;
@@ -43,32 +38,32 @@ body {
 	font-family: "华文行楷";
 }
 
-#site-nav ul li:nth-child(1) a {
+#site-nav ul li:nth-child(1) {
 	background: #8f82bc;
 	height: 130px;
 }
 
-#site-nav ul li:nth-child(2) a {
+#site-nav ul li:nth-child(2) {
 	background: #00b7ee;
 	height: 50px;
 }
 
-#site-nav ul li:nth-child(3) a {
+#site-nav ul li:nth-child(3) {
 	background: #ea68a2;
 	height: 70px;
 }
 
-#site-nav ul li:nth-child(4) a {
+#site-nav ul li:nth-child(4) {
 	background: #f39800;
 	height: 100px;
 }
 
-#site-nav ul li:nth-child(5) a {
+#site-nav ul li:nth-child(5) {
 	background: #009944;
 	height: 90px;
 }
 
-#site-nav ul li:nth-child(6) a {
+#site-nav ul li:nth-child(6) {
 	background: #00736d;
 	height: 60px;
 }
