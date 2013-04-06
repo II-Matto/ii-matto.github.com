@@ -29,41 +29,46 @@ body {
 }
 
 #site-nav ul li {
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
+
+#site-nav ul li a {
 	width: 1.2em;
 	padding: 10px 3px;
-	float: left;
 	margin: 0px 6px;
 	text-align: center;
 	color: black;
 	font-family: "华文行楷";
 }
 
-#site-nav ul li:nth-child(1) {
+#site-nav ul li:nth-child(1) a {
 	background: #8f82bc;
 	height: 130px;
 }
 
-#site-nav ul li:nth-child(2) {
+#site-nav ul li:nth-child(2) a {
 	background: #00b7ee;
 	height: 50px;
 }
 
-#site-nav ul li:nth-child(3) {
+#site-nav ul li:nth-child(3) a {
 	background: #ea68a2;
 	height: 70px;
 }
 
-#site-nav ul li:nth-child(4) {
+#site-nav ul li:nth-child(4) a {
 	background: #f39800;
 	height: 100px;
 }
 
-#site-nav ul li:nth-child(5) {
+#site-nav ul li:nth-child(5) a {
 	background: #009944;
 	height: 90px;
 }
 
-#site-nav ul li:nth-child(6) {
+#site-nav ul li:nth-child(6) a {
 	background: #00736d;
 	height: 60px;
 }
