@@ -1,2 +1,8 @@
 #post {
+	background: rgba(102, 204, 204, 0.3);
+	width: 1000px;
+	margin: 20px;
+	padding: 30px;
+	color: rgb(255, 153, 102);
+	font-family: "Comic Sans MS", "微软雅黑";
 }
