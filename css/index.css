@@ -3,83 +3,107 @@
 	padding: 5px;
 	width: 1000px;
 	height: 450px;
-	background: #fff;
-	overflow-y: scroll;
+	background: rgba(141, 207, 228, 0.3);
+	-webkit-column-width: 50%;
+	-webkit-column-gap: 2px;
 }
 
 #abstract-wrapper article {
-	width: 97%;
-	margin: 10px auto;
+	vertical-align: middle;
+	width: 46%;
 	padding: 5px;
+	margin: 20px 10px;
 	-webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-	background: -webkit-linear-gradient(10deg, #ea6 60%, #fff);
+	-webkit-transform: rotate(3deg);
+	-webkit-border-radius: 10px;
+	background: #ffc;
+	border: 2px dashed #000;
+	display: inline-block;
+}
+
+#abstract-wrapper article:nth-child(even) {
+	-webkit-transform: rotate(-2deg);
+	background: #cfc;
+}
+
+#abstract-wrapper article:nth-child(4n) {
+	-webkit-transform: rotate(2deg);
+	background: #ce2;
+}
+
+#abstract-wrapper article:nth-child(3n) {
+	-webkit-transform: rotate(-5deg);
+	background: #E490E4;
+}
+
+#abstract-wrapper article:nth-child(5n) {
+	-webkit-transform: rotate(-2deg);
+	background: #ccf;
+}
+
+#abstract-wrapper article:hover {
+	border: 2px solid #fff;
+}
+
+#abstract-wrapper article h2 {
+	font-family: "Comic Sans MS", "华文楷体", "华文隶书";
+	font-weight: bold;
+	margin: 6px 0px 5px 10px;
+	padding: 0px;
+}
+
+#abstract-wrapper article h2 a {
+	text-decoration: none;
+	color: #000;
+}
+#abstract-wrapper article h2 a:hover {
+	color: #e25;
 }
 
 /************************************************************/
 .tag-wrapper {
-	margin: 0px 0px 5px 0px;
+	margin: 0px 0px 10px 10px;
 	padding: 2px;
 }
 
 .tag-wrapper span {
+	float: left;
 	font-weight: bold;
-	font-family: "华文行楷";
+	font-family: "微软雅黑";
 }
 
 .tag-list {
+	float: left;
 	list-style: none;
 	margin: 0px;
 	padding: 0px;
 }
 
 .tag-list li {
+	margin: 0px;
+	padding: 0px;
 	float: left;
 	display: inline;
-	padding: 1px 3px;
-	background: rgba(230, 230, 230, 0.7);
-	-webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+}
+
+.tag-list li a {
+	text-decoration: none;
+	color: black;
+	font-family: "Arial", "华文楷体";
+	padding: 2px 7px;
+	margin: 0px 5px;
+	background: rgba(230, 230, 230, 0.5);
+	-webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5) inset;
+}
+
+.tag-list li a:hover {
+	background: rgba(250, 100, 100, 0.6);
 }
 
 /************************************************************/
 .abstract {
-	font-family: "Comic Sans MS", "宋体";
-}
-
-/************************************************************/
-#category-wrapper {
 	clear: both;
-	margin: 30px 20px 0px 30px;
-	width: 1000px;
-	height: 100px;
-}
-
-#category-wrapper ul {
-	list-style: none;
-	margin: 0px;
-	padding: 0px;
-}
-
-#category-wrapper ul li:nth-child(n) {
-	background: #8f82bc;
-}
-
-#category-wrapper ul li:nth-child(2n) {
-	background: #009944;
-}
-
-#category-wrapper ul li:nth-child(3n) {
-	background: #ea68a2;
-}
-
-#category-wrapper ul li:nth-child(4n) {
-	background: #00736d;
-}
-
-#category-wrapper ul li {
-	width: 194px;
-	height: 94px;
-	margin: 0px;
-	padding: 3px;
-	float: left;
-	display: inline;
+	font-family: "SFArchRivalExtendedRegular", "华文楷体";
+	margin: 0px 0px 5px 10px;
+	padding: 10px 0px 0px 0px;
 }

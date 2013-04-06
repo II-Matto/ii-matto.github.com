@@ -4,7 +4,8 @@ title: II-Matto
 abstract: Pensiero Realizzare.
 ---
 
-<link rel="stylesheet" href="../css/index.css" />
+<link rel="stylesheet" href="/css/index.css" />
+<link rel="stylesheet" href="/css/font-face.css" />
 
 <div id="abstract-wrapper">
 	{% for post in site.categories.notes %}
@@ -14,21 +15,11 @@ abstract: Pensiero Realizzare.
 			<span>标签：</span>
 			<ul class="tag-list">
 				{% for tag in post.tags %}
-				<li>{{ tag }}</li>
+				<li><a href="">{{ tag }}</a></li>
 				{% endfor %}
 			</ul>
 		</div>
-		<p class="abstract">{{ post.abstract }}</p>
+		<section class="abstract">{{ post.abstract }}</section>
 	</article>
 	{% endfor %}
 </div>
-
-<!--
-<div id="category-wrapper">
-	<ul id="category-list">
-		{% for category in site %}
-		<li><h3>{{ category.name }}</h3></li>
-		{% endfor %}
-	</ul>
-</div>
--->
