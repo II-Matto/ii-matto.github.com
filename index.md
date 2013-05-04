@@ -11,6 +11,7 @@ abstract: Pensiero Realizzare.
 	{% for post in site.categories.notes %}
 	<article>
 		<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+		<p>{{ post.date| date: "%Y-%m-%d" }}</p>
 		<div class="tag-wrapper">
 			<span>标签：</span>
 			<ul class="tag-list">

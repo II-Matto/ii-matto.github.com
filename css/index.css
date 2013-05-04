@@ -2,7 +2,6 @@
 	margin: 30px 20px 0px 30px;
 	padding: 5px;
 	width: 1000px;
-	height: 450px;
 	background: rgba(141, 207, 228, 0.3);
 	-webkit-column-width: 50%;
 	-webkit-column-gap: 2px;
@@ -12,41 +11,36 @@
 	vertical-align: middle;
 	width: 46%;
 	padding: 5px;
-	margin: 20px 10px;
+	margin: 5px 10px;
 	-webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
-	-webkit-transform: rotate(3deg);
 	-webkit-border-radius: 10px;
 	background: #ffc;
-	border: 2px dashed #000;
+	border: 2px solid #fff;
 	display: inline-block;
 }
 
 #abstract-wrapper article:nth-child(even) {
-	-webkit-transform: rotate(-2deg);
 	background: #cfc;
 }
 
 #abstract-wrapper article:nth-child(4n) {
-	-webkit-transform: rotate(2deg);
 	background: #ce2;
 }
 
 #abstract-wrapper article:nth-child(3n) {
-	-webkit-transform: rotate(-5deg);
 	background: #E490E4;
 }
 
 #abstract-wrapper article:nth-child(5n) {
-	-webkit-transform: rotate(-2deg);
 	background: #ccf;
 }
 
 #abstract-wrapper article:hover {
-	border: 2px solid #fff;
+	border: 2px dashed #000;
 }
 
 #abstract-wrapper article h2 {
-	font-family: "Comic Sans MS", "华文楷体", "华文隶书";
+	font-family: "Comic Sans MS", "宋体", "华文楷体", "华文隶书";
 	font-weight: bold;
 	margin: 6px 0px 5px 10px;
 	padding: 0px;
@@ -58,6 +52,11 @@
 }
 #abstract-wrapper article h2 a:hover {
 	color: #e25;
+}
+
+#abstract-wrapper article p {
+	margin: 0px 0px 10px 10px;
+	padding: 0px;
 }
 
 /************************************************************/
@@ -87,9 +86,10 @@
 }
 
 .tag-list li a {
+	font-size: 0.8em;
 	text-decoration: none;
 	color: black;
-	font-family: "Arial", "华文楷体";
+	font-family: "Arial", "微软雅黑", "宋体", "华文楷体";
 	padding: 2px 7px;
 	margin: 0px 5px;
 	background: rgba(230, 230, 230, 0.5);
@@ -103,7 +103,7 @@
 /************************************************************/
 .abstract {
 	clear: both;
-	font-family: "SFArchRivalExtendedRegular", "华文楷体";
+	font-family: "Times New Roman", "SFArchRivalExtendedRegular", "宋体", "华文楷体";
 	margin: 0px 0px 5px 10px;
 	padding: 10px 0px 0px 0px;
 }
