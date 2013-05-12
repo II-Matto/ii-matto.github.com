@@ -1,0 +1,151 @@
+code {
+    color: #fff;
+}
+
+#post ol.linenums {
+    font-size: 1em;
+}
+
+.text-en {
+    color: rgb(65, 165, 69);
+    padding: 0px 3px;
+}
+
+#post blockquote {
+    font-family: Georgia, serif, "微软雅黑";
+    font-size: 0.8em;
+    width: 75%;
+    margin: auto;
+    padding: 0.25em 0px;
+    line-height: 1.45;
+    position: relative;
+    color: rgb(153, 169, 187);
+}
+
+#post blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+}
+
+#post blockquote p {
+    text-indent: 2em;
+}
+
+#post img {
+    display: block;
+    margin: auto;
+}
+
+#post ul, #post ol {
+    margin: 0px 3em;
+    font-size: 0.8em;
+    color: rgb(233, 190, 161);
+}
+
+#post ul li, #post ol li {
+    margin: 0px;
+    padding: 3px 0px;
+}
+
+#post ul li p, #post ol li p {
+    margin: 0px;
+    padding: 0px;
+}
+
+#post h2 {
+    color: rgb(189, 120, 206);
+}
+
+/**************************/
+#post {
+	background: rgba(103, 133, 99, 0.3);
+	width: 1000px;
+	margin: 20px;
+	padding: 30px;
+	color: rgb(124, 180, 178);
+	font-family: "Arial", "Times New Roman", "Comic Sans MS", "微软雅黑";
+}
+
+#post header h1 {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#post header h1 a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0px;
+}
+
+#post header h1 a:hover {
+    color: rgb(240, 106, 30);
+}
+
+#post header p {
+    text-indent: 0em;
+    font-family: "Times New Roman", "Arial";
+    color: rgb(230, 157, 174);
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
+.hidden-content {
+    display: none;
+}
+
+#post p a {
+    text-decoration: none;
+    color: rgb(230, 214, 97);
+    border-bottom: 1px dashed rgb(141, 233, 133);
+}
+
+#post p a:hover {
+    color: rgb(240, 106, 30);
+    border-bottom: 1px dashed rgb(141, 233, 133);
+}
+
+#post > p {
+    text-indent: 2em;
+}
+
+/**************************/
+.tooltip {
+	display: inline;
+	position: relative;
+	text-decoration: underline;
+}
+
+.tooltip:hover {
+	background: rgba(100, 150, 150, 0.5);
+	border-radius: 7px;
+	color: #5e9;
+}
+
+.tooltip:hover:after{
+    background: rgba(100, 100, 100, 0.8);
+    border: 2px solid rgba(19, 213, 230, 0.9);
+    border-radius: 5px;
+    bottom: 31px;
+    color: #fff;
+    content: attr(data-info);
+    left: 20%;
+    padding: 3px 6px;
+    position: absolute;
+    font-size: 0.8em;
+    width: 200px;
+}
+
+.tooltip:hover:before{
+    border: solid;
+    border-color: rgb(19, 213, 230) transparent;
+    border-width: 6px 6px 0 6px;
+    bottom: 25px;
+    content: "";
+    left: 50%;
+    position: absolute;
+}

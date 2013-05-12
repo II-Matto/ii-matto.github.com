@@ -1,0 +1,109 @@
+#abstract-wrapper {
+	margin: 30px 20px 0px 30px;
+	padding: 5px;
+	width: 1000px;
+	background: rgba(141, 207, 228, 0.3);
+	-webkit-column-width: 50%;
+	-webkit-column-gap: 2px;
+}
+
+#abstract-wrapper article {
+	vertical-align: middle;
+	width: 46%;
+	padding: 5px;
+	margin: 5px 10px;
+	-webkit-box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.5);
+	-webkit-border-radius: 10px;
+	background: #ffc;
+	border: 2px solid #fff;
+	display: inline-block;
+}
+
+#abstract-wrapper article:nth-child(even) {
+	background: #cfc;
+}
+
+#abstract-wrapper article:nth-child(4n) {
+	background: #ce2;
+}
+
+#abstract-wrapper article:nth-child(3n) {
+	background: #E490E4;
+}
+
+#abstract-wrapper article:nth-child(5n) {
+	background: #ccf;
+}
+
+#abstract-wrapper article:hover {
+	border: 2px dashed #000;
+}
+
+#abstract-wrapper article h2 {
+	font-family: "Comic Sans MS", "宋体", "华文楷体", "华文隶书";
+	font-weight: bold;
+	margin: 6px 0px 5px 10px;
+	padding: 0px;
+}
+
+#abstract-wrapper article h2 a {
+	text-decoration: none;
+	color: #000;
+}
+#abstract-wrapper article h2 a:hover {
+	color: #e25;
+}
+
+#abstract-wrapper article p {
+	margin: 0px 0px 10px 10px;
+	padding: 0px;
+}
+
+/************************************************************/
+.tag-wrapper {
+	margin: 0px 0px 10px 10px;
+	padding: 2px;
+}
+
+.tag-wrapper span {
+	float: left;
+	font-weight: bold;
+	font-family: "微软雅黑";
+}
+
+.tag-list {
+	float: left;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+.tag-list li {
+	margin: 0px;
+	padding: 0px;
+	float: left;
+	display: inline;
+}
+
+.tag-list li a {
+	font-size: 0.8em;
+	text-decoration: none;
+	color: black;
+	font-family: "Arial", "微软雅黑", "宋体", "华文楷体";
+	padding: 2px 7px;
+	margin: 0px 5px;
+	background: rgba(230, 230, 230, 0.5);
+	-webkit-box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5) inset;
+}
+
+.tag-list li a:hover {
+	background: rgba(250, 100, 100, 0.6);
+}
+
+/************************************************************/
+.abstract {
+	clear: both;
+	font-family: "Times New Roman", "SFArchRivalExtendedRegular", "宋体", "华文楷体";
+	margin: 0px 0px 5px 10px;
+	padding: 10px 0px 0px 0px;
+}
