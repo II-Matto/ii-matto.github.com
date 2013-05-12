@@ -1,3 +1,67 @@
+code {
+    color: #fff;
+}
+
+ol.linenums {
+    font-size: 1em;
+}
+
+.text-en {
+    color: rgb(65, 165, 69);
+    padding: 0px 3px;
+}
+
+blockquote {
+    font-family: Georgia, serif, "微软雅黑";
+    font-size: 0.8em;
+    width: 75%;
+    margin: auto;
+    padding: 0.25em 0px;
+    line-height: 1.45;
+    position: relative;
+    color: rgb(153, 169, 187);
+}
+
+blockquote:before {
+    display: block;
+    content: "\201C";
+    font-size: 80px;
+    position: absolute;
+    left: -20px;
+    top: -20px;
+    color: #7a7a7a;
+}
+
+blockquote p {
+    text-indent: 2em;
+}
+
+img {
+    display: block;
+    margin: auto;
+}
+
+ul, ol {
+    margin: 0px 3em;
+    font-size: 0.8em;
+    color: rgb(233, 190, 161);
+}
+
+ul li, ol li {
+    margin: 0px;
+    padding: 3px 0px;
+}
+
+ul li p, ol li p {
+    margin: 0px;
+    padding: 0px;
+}
+
+h2 {
+    color: rgb(189, 120, 206);
+}
+
+/**************************/
 #post {
 	background: rgba(103, 133, 99, 0.3);
 	width: 1000px;
@@ -45,17 +109,8 @@
     border-bottom: 1px dashed rgb(141, 233, 133);
 }
 
-#post p {
+#post > p {
     text-indent: 2em;
-}
-
-code {
-    color: #fff;
-}
-
-.text-en {
-    color: rgb(65, 165, 69);
-    padding: 0px 3px;
 }
 
 /**************************/
