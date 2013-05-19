@@ -1,5 +1,19 @@
 code {
+    font-size: 12px;
+}
+
+p code {
     color: #fff;
+}
+
+#post a {
+    color: rgb(230, 214, 97);
+    text-decoration: none;
+    border-bottom: 1px dashed rgb(141, 233, 133);
+}
+
+#post a:hover {
+    color: rgb(240, 106, 30);
 }
 
 #post ol.linenums {
@@ -57,8 +71,15 @@ code {
     padding: 0px;
 }
 
-#post h2 {
-    color: rgb(189, 120, 206);
+/*#post ul li a, #post ol li a {
+    color: rgb(230, 214, 97);
+    text-decoration: none;
+    border-bottom: 1px dashed rgb(141, 233, 133);
+}*/
+
+#post h2, #post h3 {
+    color: rgb(211, 138, 29);
+    font-family: Arial, "宋体";
 }
 
 /**************************/
@@ -69,6 +90,7 @@ code {
 	padding: 30px;
 	color: rgb(124, 180, 178);
 	font-family: "Arial", "Times New Roman", "Comic Sans MS", "微软雅黑";
+    line-height: 1.5;
 }
 
 #post header h1 {

@@ -7,7 +7,7 @@
 	<meta name="author" content="II-Matto" />
     <meta name="description" content="II-Matto's Blog" />
 
-	<title>IllumiRoom - Peripheral Projected Illusions for Interationve Experiences | II-Matto</title>
+	<title>Feature Evaluation | II-Matto</title>
 
 	<link rel="stylesheet" href="/css/default.css" />
 
@@ -38,25 +38,36 @@
 
 <article id="post">
 	<header>
-		<h1><a href="/blog/notes/20130510-chi2013-illumiroom.html" title="IllumiRoom - Peripheral Projected Illusions for Interationve Experiences">IllumiRoom - Peripheral Projected Illusions for Interationve Experiences</a></h1>
-		<p>2013-05-10</p>
+		<h1><a href="/blog/Note/20130407-feature-evaluation.html" title="Feature Evaluation">Feature Evaluation</a></h1>
+		<p>2013-04-07</p>
 	</header>
 
-	<p>一点小笔记</p>
+	<h2 id="comparative-evaluation-of-binary-features-2012-eccv">Comparative Evaluation of Binary Features (2012 ECCV)</h2>
 
-<p>如果要在<span class="text-en">YAML</span>中使用冒号（<span class="text-en"><strong>:</strong></span>），那么应该把整个句子都用双引号引起来，作为一个字符串。</p>
+<p>以SIFT/SURF作为baseline，分析二值描述子BRIEF/ORB/BRISK的性能特点。</p>
 
-<p>然后是几个链接</p>
+<h3 id="section">评估项目：</h3>
+<ul>
+  <li>影响因素：图像模糊程度，曝光，JPEG压缩，尺度放缩和旋转，平面几何的透视变换，非平面几何的透视变换，单独的旋转/尺度变换/光照变化、白平衡，自动曝光，图像质量</li>
+  <li>以匹配性能为标准，评估检测器和描述子之间的相关性（二者的相关性对于描述子后处理方法具有较大的影响，如RANSAC？？？）</li>
+</ul>
 
-<p><a href="http://v.youku.com/v_show/id_XNTU0NzM4Nzc2.html" title="IllumiRoom - Youku">llumiRoom：外围投射的互动视觉体验</a></p>
+<p>对于不同的影响因素，基于不同的数据集，采用控制变量的方法对特征进行评估</p>
 
-<p><a href="http://research.microsoft.com/en-us/projects/illumiroom/" title="IllumiRoom - Microsoft Research">IllumiRoom Project</a></p>
+<h3 id="section-1">性能度量：</h3>
+<ul>
+  <li>常用指标：召回率，可重复性（repeatability），1-准确率（1-precision）【缺点：丢失了特征的空间分布信息，以及候选匹配的频率？？？】</li>
+  <li>本文采用的指标：公认匹配率（putative match ratio），准确率，匹配值（match score），召回率，熵【除了已经提出的评估任务，本文还希望能够针对依赖于这些特征的算法，对算法中有关的参数进行评估】</li>
+</ul>
 
-<p><a href="https://code.google.com/p/leveldb" title="LevelDB - Google Code">LevelDB Project</a></p>
+<h3 id="section-2">匹配标准</h3>
+<p>ratio style test</p>
 
-<p><a href="http://m.spectrum.ieee.org/automaton/robotics/home-robots/mit-ikeabot-autonomous-furniture-assembly-robots" title="MIT Robots Can Assemble Your IKEA Furniture For You - IEEE Spectrum">MIT Robots Can Assemble Your IKEA Furniture For You</a></p>
+<p>研究过局部特征描述子的研究人员：
+[Krystian Mikolajczyk][http://personal.ee.surrey.ac.uk/Personal/K.Mikolajczyk/]</p>
 
-<p><a href="http://www.toptal.com/python/how-i-made-porn-20x-more-efficient-with-python" title="How I Made Porn 20x More Efficient with Python - Toptal">How I Made Porn 20x More Efficient with Python</a></p>
+<h2 id="a-performance-evaluation-of-local-descriptors-2005-tpami-3481">A Performance Evaluation of Local Descriptors (2005 TPAMI 3481)</h2>
+
 
 
 	<footer>
