@@ -1,0 +1,13 @@
+---
+title: Restart Github Pages
+categories: [diary, misc]
+tags: [Github Pages, Jekyll, Ruby]
+---
+
+Just telling the story that I decided to make myself a blog based on Github pages again.
+
+<!-- End of Excerpt -->
+
+Can Chinese be used?
+
+测试一下中文。

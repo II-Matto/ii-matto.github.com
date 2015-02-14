@@ -1,0 +1,27 @@
+source:      _source
+destination: _deploy
+timezone:    Asia/Shanghai
+encoding:    utf-8
+lsi:         true
+
+highlighter: pygments
+
+sass:
+    sass_dir: _sass
+    style:    :compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      excerpt_separator: "<!-- End of Excerpt -->"
+  -
+    scope:
+      path: "projects"
+      type: "pages" # previously `page` in Jekyll 2.2.
+    values:
+      layout: "project" # overrides previous default layout
+      author: "Mr. Hyde"
