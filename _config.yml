@@ -1,6 +1,5 @@
 timezone:      Asia/Shanghai
 encoding:      utf-8
-lsi:           true
 permalink:     /blog/:year:month:day/:title.html
 
 paginate:      1
