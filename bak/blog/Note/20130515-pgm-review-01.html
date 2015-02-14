@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="II-Matto" />
+    <meta name="description" content="II-Matto's Blog" />
+
+	<title>PGM复习笔记（Week1）：什么是PGM和开始用PGM描述这个世界 | II-Matto</title>
+
+	<link rel="stylesheet" href="/css/default.css" />
+
+	<link rel="stylesheet" href="/css/google-code-prettify/prettify.css" />
+	<link rel="stylesheet" href="/css/google-code-prettify/sons-of-obsidian.css" />
+
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+	
+</head>
+
+<body>
+	<img id="tsuna" src="/img/tsuna.png" />
+
+	<nav id="site-nav">
+		<ul>
+			<li><a href="/">这是首页</a></li>
+			<li><a href="/index/notes.html">笔记</a></li>
+			<li><a href="/index/box.html">储物间</a></li>
+			<li><a href="/index/news.html">黑板报</a></li>
+			<li><a href="/index/bookmarks.html">一点痕迹</a></li>
+			<li><a href="/index/private.html">灵境</a></li>
+		</ul>
+	</nav>
+
+	<div id="content-wrapper">
+		<link rel="stylesheet" href="/css/post.css" />
+
+<article id="post">
+	<header>
+		<h1><a href="/blog/Note/20130515-pgm-review-01.html" title="PGM复习笔记（Week1）：什么是PGM和开始用PGM描述这个世界">PGM复习笔记（Week1）：什么是PGM和开始用PGM描述这个世界</a></h1>
+		<p>2013-05-15</p>
+	</header>
+
+	<p>这门课程叫做概率图模型（<span class="text-en"><strong>P</strong>robabilistic <strong>G</strong>raphical <strong>M</strong>odel</span>），讲课教师是斯坦福大学的<span class="text-en">Daphne Koller</span>教授。这是一门研究生水平的课程，有一定的难度，建议每周花费的时间在<span class="text-en">10</span>小时以上。</p>
+
+<p>第一周课程的内容主要回答了<span class="text-en">4</span>个问题：</p>
+
+<ol>
+  <li>
+    <p>什么是概率图模型？</p>
+  </li>
+  <li>
+    <p>概率图模型表达了什么样的语义？</p>
+  </li>
+  <li>
+    <p>概率图模型可以用来干嘛？</p>
+  </li>
+  <li>
+    <p>如何建立概率图模型来描述这个世界？</p>
+  </li>
+</ol>
+
+<p>概率图模型其实是描述这个世界的一种工具，能够表达模型建立者对某个问题、过程的理解、观点，比方说一篇文档是怎样通过单词构造出来（文本建模），顾客想要购买的商品和其之前的消费行为存在怎样的关联（推荐）等等。课上老师是通过医疗诊断和图像分割两个问题来引入概率图模型的，这里可以考虑一个更为简单的问题：如何决定我当前是否要学习<span class="text-en">PGM</span>这门课？</p>
+
+<p>基于<span class="text-en">Coursera</span>提供的课程信息，我觉得我可以考虑以下一些因素：授课教师的名气（<span class="text-en">Lecturer</span>）、课程难度（<span class="text-en">Difficulty</span>）、每周建议投入的时间（<span class="text-en">Workload</span>）、完成课程之后能否获得证书（<span class="text-en">Certificate</span>）、对其它知识或技能的依赖程度（<span class="text-en">Prerequisites</span>）。列出这些因素之后，我需要考虑它们和“是否学习这门课程（<span class="text-en">Participation</span>）”这一结果的关系，以及这些因素相互之间的关系。例如可以认为课程越难则建议投入的时间会越长（通过建议投入的时间的长短可以反推出课程难度）；然后如果我现在可用的时间非常有限，那我就加上一条限制：需要投入的时间越长，课程对其它知识或技能的依赖程度越大，我越不太可能去学习这门课程；另外按照人之常情，我觉得授课教师的名气越大，我学习这门课程的意愿也会越强，学习这门课程的可能性也会越大。在有了这些考虑之后，我可以画出下面的一张图：</p>
+
+<p><img src="/img/2013-05-15-pgm-review-01/fig1.png" alt="PGM for deciding whether to learn this course." /></p>
+
+<p>简单的说，图上的每一个节点就对应前面所考虑的一个因素，而每一条边就表示两个因素之间的关联，这样我就用概率图模型描述出了我对这个问题的理解，有了它之后，我就可以做很多别的事情了！</p>
+
+<p>下面是对第一周所涉及到的<span class="text-en">4</span>个基本问题的复习。</p>
+
+<h3 id="section">1. 什么是概率图模型</h3>
+
+<p>概率图模型涉及到了数学（概率和统计）与计算机科学两大领域，是二者相结合的产物，其英文包含三个单词：<span class="text-en">probabilistic</span>、<span class="text-en">graphical</span>和<span class="text-en">model</span>，三者各有其内涵。</p>
+
+<h4 id="model">(1) MODEL</h4>
+
+<p><span class="text-en">MODEL</span>这个词的意思是“模型”，而模型就是一种表示形式（<span class="text-en">representation</span>），用来描述我们对现实世界的理解，一方面它说明了（一个问题中）有哪些变量，另一方面也刻画了这些变量之间是如何交互的（变量之间的关系）。</p>
+
+<p>模型的好处就在于它和算法（<span class="text-en">algorithm</span>）是相分离的，模型独立于算法（从某种意义上说，模型就是数据结构），这样对于同一个模型，可以采用不同的算法去处理相关任务和解决相关问题，从而可以根据实际情况在准确性（<span class="text-en">accuracy</span>）和效率（<span class="text-en">efficiency</span>）之间进行权衡，选择最合适的算法。不仅如此，模型的构建或者说学习（<span class="text-en">learning</span>）和利用模型进行推理（<span class="text-en">reason</span>）的算法也互不干涉，模型的学习可以基于大量的数据（统计机器学习），也可以基于领域专家所提供的信息。在这种模型、算法、学习三者分离的情况下，可以对它们分别进行处理，具有非常好的灵活性。</p>
+
+<blockquote>
+	<p>Models: <span style="color: rgb(230, 214, 97)">declaritive</span> representation of our understanding of the world.</p>
+	<p>Declaritive: the model stands on its own. We can look into it and make sense of it.</p>
+</blockquote>
+
+<h4 id="probabilistic">(2) PROBABILISTIC</h4>
+
+<p>概率描述的是这个世界上所存在的不确定性（<span class="text-en">uncertainty</span>），不确定性的原因有<span class="text-en">4</span>点：</p>
+
+<ol>
+  <li>
+    <p>我们无法完全知晓这个世界的状态（<span class="text-en">Partial knowledge of the state of the world</span>）。</p>
+  </li>
+  <li>
+    <p>我们所观察到的不仅包含我们想要获得的数据，还包含了噪声（<span class="text-en">Noisy observation</span>）。</p>
+  </li>
+  <li>
+    <p>我们的模型并不是包罗万象的，总有一些情况它没有考虑到（<span class="text-en">Phenomena not covered by the model</span>）。</p>
+  </li>
+  <li>
+    <p>事物本身就存在着随机性（<span class="text-en">Inherent stochastic</span>）。</p>
+  </li>
+</ol>
+
+<p>概率论其实是一个框架（<span class="text-en">framework</span>），它提供了很多方法和工具（<span class="text-en">principled methods and valuable tools</span>）。</p>
+
+<ol>
+  <li>
+    <p>表示形式：概率分布，它表达了事物所处状态的不确定性（这实际上就是其包含的语义）。</p>
+  </li>
+  <li>
+    <p>用于推理的模式（<span class="text-en">reasoning patterns</span>），例如以新观察到的数据位条件进行推理，在不确定的情况下进行决策等。</p>
+  </li>
+</ol>
+
+<h4 id="graphical">(3) GRAPHICAL</h4>
+
+<h3 id="section-1">2. 概率图模型表达了什么样的语义？</h3>
+
+<h3 id="section-2">3. 概率图模型可以用来干嘛？</h3>
+
+<h3 id="section-3">4. 如何建立概率图模型来描述这个世界？</h3>
+
+
+	<footer>
+		<hr />
+		<p>Thanks for your time :-)</p>
+	</footer>
+</article>
+
+	</div>
+
+	<!--
+	<div id="copyright">
+		
+			<p>Designed by <a href="http://ii-matto.github.com/about" title="II-Matto" target="_blank">II-Matto</a> &copy; 2013</p>
+		
+	</div>
+	-->
+
+	<script src="/js/jquery-1.9.1.min.js"></script>
+<!-- Google CDN for jQuery
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+-->
+
+	<script src="/js/default.js"></script>
+
+	<script src="/css/google-code-prettify/prettify.js"></script>
+<!--
+	<script src="/css/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css&amp;skin=sons-of-obsidian"></script>
+-->
+<!-- Google CDN for Prettify
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
+-->
+</body>
+
+</html>
