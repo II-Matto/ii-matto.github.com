@@ -1,8 +1,12 @@
-timezone:    Asia/Shanghai
-encoding:    utf-8
-lsi:         true
+timezone:      Asia/Shanghai
+encoding:      utf-8
+lsi:           true
+permalink:     /blog/:year:month:day/:title.html
 
-highlighter: pygments
+paginate:      1
+paginate_path: "blog/page:num/"
+
+highlighter:   pygments
 
 sass:
     sass_dir: _sass
