@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="II-Matto" />
+    <meta name="description" content="II-Matto's Blog" />
+
+	<title>Hello World! | II-Matto</title>
+
+	<link rel="stylesheet" href="/css/default.css" />
+
+	<link rel="stylesheet" href="/css/google-code-prettify/prettify.css" />
+	<link rel="stylesheet" href="/css/google-code-prettify/sons-of-obsidian.css" />
+
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+	
+</head>
+
+<body>
+	<img id="tsuna" src="/img/tsuna.png" />
+
+	<nav id="site-nav">
+		<ul>
+			<li><a href="/">这是首页</a></li>
+			<li><a href="/index/notes.html">笔记</a></li>
+			<li><a href="/index/box.html">储物间</a></li>
+			<li><a href="/index/news.html">黑板报</a></li>
+			<li><a href="/index/bookmarks.html">一点痕迹</a></li>
+			<li><a href="/index/private.html">灵境</a></li>
+		</ul>
+	</nav>
+
+	<div id="content-wrapper">
+		<link rel="stylesheet" href="/css/post.css" />
+
+<article id="post">
+	<header>
+		<h1><a href="/blog/Test/20130406-test.html" title="Hello World!">Hello World!</a></h1>
+		<p>2013-04-06</p>
+	</header>
+
+	<h2 id="markdown">1. Markdown</h2>
+
+<p>之前用的<span class="text-en">rdiscount</span>，现在改成<span class="text-en">kramdown</span>了，主要是由于<span class="text-en">rdiscount</span>在配合<span class="text-en">MathJax</span>使用时，会把上标符号（<span class="text-en">^</span>）自动转换为<span class="text-en">HTML</span>标签（<span><code>&lt;sup&gt;</code></span>），导致<span class="text-en">MathJax</span>渲染公式失败。对于新版本的<span class="text-en">rdiscount</span>（2.0+）可以用反斜杠转义来解决这个问题，但是<span class="text-en">Github</span>上使用的是<span class="text-en">1.6.8</span>（参见<a href="https://help.github.com/articles/using-jekyll-with-pages"> Using Jekyll with Pages </a>），尝试发现这种转义是无效的。</p>
+
+<p>下面测试一下<span class="text-en">markdown</span>的各种标记转换，顺便看一下样式。</p>
+
+<p>(1) 引用：在行首加上大于号（<span class="text-en"><strong>&gt;</strong></span>）</p>
+
+<blockquote>
+  <p>The best prize that life can offer is the chance to work hard at work worthing doing.</p>
+</blockquote>
+
+<p style="text-indent: 0em">中文引用：</p>
+
+<blockquote>
+  <p>草食动物，你刚才的表情，很无趣，好好看着吧，我的战斗。</p>
+</blockquote>
+
+<p style="text-indent: 0em">多行引用：</p>
+
+<blockquote>
+  <p>Ut nonummy habent soluta claritas veniam. Typi nunc soluta hendrerit mutationem sollemnes. Quis lius dolore et insitam vel. Aliquip consequat futurum claram ut mazim. Facilisi accumsan dolore ii imperdiet consequat. Claritatem aliquip quod putamus vulputate iusto. Doming minim typi zzril lius usus. In clari mutationem autem non sit. Qui augue mirum dynamicus gothica ut. Demonstraverunt processus soluta sequitur autem demonstraverunt.</p>
+</blockquote>
+
+<p>最好能够根据引用内容的多少动态确定<code> blockquote </code>的宽度，但是怎么样计算比较合理呢？</p>
+
+<p>(2) 超链接: <a href="http://www.google.com" title="Google"> Google </a></p>
+
+<p>(3) 列表：</p>
+
+<p>无序列表：</p>
+
+<ul>
+  <li>
+    <p>家庭教师 Katekyo Hitman Reborn!</p>
+  </li>
+  <li>
+    <p>夏目友人帐 Natsume Yuujinchou</p>
+  </li>
+  <li>
+    <p>少年同盟 Kimi To Boku</p>
+  </li>
+</ul>
+
+<p>有序列表：</p>
+
+<ol>
+  <li>
+    <p>打工吧，魔王大人！</p>
+  </li>
+  <li>
+    <p>狂欢节</p>
+  </li>
+  <li>
+    <p>恶魔幸存者</p>
+  </li>
+</ol>
+
+<p>(4) 图片：</p>
+
+<p><img src="/img/tmp/test.jpg" alt="test" /></p>
+
+<h2 id="google-prettify">2. Google Prettify</h2>
+
+<p>用<span class="text-en">Google Prettify</span>来渲染代码，效果如下：</p>
+
+<pre><code>int main()
+{
+	printf("Hello world\n");
+}
+</code></pre>
+
+<p>行间代码用反撇号（<span class="text-en"><strong>`</strong></span>），效果：<code>Hello World</code>，不过没有<span class="text-en">Google Prettify</span>渲染了，直接给弄成了白色。</p>
+
+<h2 id="mathjax">3. MathJax</h2>
+
+<p>测试数学公式，用<span class="text-en">MathJax</span>来渲染。</p>
+
+<p>When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\)</p>
+
+<script type="math/tex; mode=display">J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}</script>
+
+<p>This is <strong>the</strong> end.</p>
+
+
+	<footer>
+		<hr />
+		<p>Thanks for your time :-)</p>
+	</footer>
+</article>
+
+	</div>
+
+	<!--
+	<div id="copyright">
+		
+			<p>Designed by <a href="http://ii-matto.github.com/about" title="II-Matto" target="_blank">II-Matto</a> &copy; 2013</p>
+		
+	</div>
+	-->
+
+	<script src="/js/jquery-1.9.1.min.js"></script>
+<!-- Google CDN for jQuery
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+-->
+
+	<script src="/js/default.js"></script>
+
+	<script src="/css/google-code-prettify/prettify.js"></script>
+<!--
+	<script src="/css/google-code-prettify/run_prettify.js?autoload=true&amp;lang=css&amp;skin=sons-of-obsidian"></script>
+-->
+<!-- Google CDN for Prettify
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?lang=css&skin=sunburst"></script>
+-->
+</body>
+
+</html>

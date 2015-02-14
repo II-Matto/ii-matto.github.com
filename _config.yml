@@ -1,5 +1,3 @@
-source:      _source
-destination: _deploy
 timezone:    Asia/Shanghai
 encoding:    utf-8
 lsi:         true
