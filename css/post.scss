@@ -2,22 +2,48 @@
 ---
 
 .text-en {
-    color: rgb(65, 165, 69);
+    color: #488C4B;
+    padding: 0px 3px;
+}
+
+.text-sep {
     padding: 0px 3px;
 }
 
 #post {
-    margin: 20px;
-    color: #fff;
+    margin: 50px 20px 20px 20px;
     font-size: 15px;
     line-height: 22px;
-    color: #CFCABD;
+    color: #A39F94;
+}
+
+#post a {
+    color: #977799;
 }
 
 #post p {
     margin-top: 9px;
 }
 
-#post h1 {
-    font-size: 20px;
+#post header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#post header h1 > a {
+    font-size: 25px;
+    text-decoration: none;
+    color: #4BAFD3;
+    font-weight: bold;
+}
+
+#post header p {
+    text-indent: 0em;
+}
+
+code {
+    color: #71A6C2;
+    padding: 0px 3px;
+    font-family: Courier New, Consolas;
+    font-size: 13px;
 }
