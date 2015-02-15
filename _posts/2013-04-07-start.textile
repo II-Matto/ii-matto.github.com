@@ -9,7 +9,7 @@ tags: [Github Pages, Jekyll, Liquid, YAML]
 
 <!-- End of Excerpt -->
 
-捣腾了好些天，终于算是有个还可以用的主页，因为其实之前这方面一点都不懂，所以还真是有点费劲。看着别人写的博客，大概知道要怎么弄，然后一点一点尝试。想要页面显得美观一点，但是关于%(text-en)CSS3%和%(text-en)Javascript%实在是懂得非常有限，只有不断%(text-en)Google%还有去["w3schools(W3 School)":http://www.w3schools.com/]查。发现有一个观点，非常重要，那就是：不要期望着一下能够做个多么好的东西出来。。。理想总是美好的，现实总是残酷的！先拿出一点可用的东西来，再慢慢在其上去增加和改进吧~
+捣腾了好些天，终于算是有个还可以用的主页，因为其实之前这方面一点都不懂，所以还真是有点费劲。看着别人写的博客，大概知道要怎么弄，然后一点一点尝试。想要页面显得美观一点，但是关于[%(text-en)CSS3%]和[%(text-en)Javascript%]实在是懂得非常有限，只有不断[%(text-en)Google%]还有去["w3schools(W3 School)":http://www.w3schools.com/]查。发现有一个观点，非常重要，那就是：不要期望着一下能够做个多么好的东西出来。。。理想总是美好的，现实总是残酷的！先拿出一点可用的东西来，再慢慢在其上去增加和改进吧~
 
 记录一下两个重要的教程，其中主要是看的前一个。
 
@@ -19,13 +19,13 @@ tags: [Github Pages, Jekyll, Liquid, YAML]
 
 本来想在本机上装["Jekyll(Jekyll Wiki)":link3]的（%(text-en)Windows 7 Ultimate%），这样就可以实时的看页面的效果，但是不知道为什么总是失败，在虚拟机的%(text-en)Ubuntu%上成功了，不过每次要开虚拟机还是很麻烦，现在是直接写%(text-en)HTML%、%(text-en)CSS%和%(text-en)Javascript%，在浏览器里面看效果（哈！）
 
-装Jekyll的问题，是在装好%(text-en)RubyInstaller%和%(text-en)Development Kit%之后，执行@gem install jekyll@命令总是出错，是在装%(text-en)fast-stemmer%的时候，直接报错停止了，没有找到原因，好像是%(text-en)naive extension%失败什么的，因为也不太要紧，所以先放一边吧。（现在发现，只需要换用旧的%(text-en)ruby%就行了，用%(text-en)1.93%就没问题，不过%(text-en)jekyll%有个地方要改一下，否则生成页面的时候会出错，可以参见["这里(杜增强.COM - Jekyll在Windows7下面中文编码问题解决方案)":http://www.duzengqiang.com/blog/post/979.html]。）
+装Jekyll的问题，是在装好%(text-en)RubyInstaller%和[%(text-en)Development Kit%]之后，执行@gem install jekyll@命令总是出错，是在装[%(text-en)fast-stemmer%]的时候，直接报错停止了，没有找到原因，好像是[%(text-en)naive extension%]失败什么的，因为也不太要紧，所以先放一边吧。（现在发现，只需要换用旧的[%(text-en)ruby%]就行了，用[%(text-en)1.93%]就没问题，不过[%(text-en)jekyll%]有个地方要改一下，否则生成页面的时候会出错，可以参见["这里(杜增强.COM - Jekyll在Windows7下面中文编码问题解决方案)":http://www.duzengqiang.com/blog/post/979.html]。）
 
-阮一峰["那篇文章(搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门)":link2]之前就看过，但是在%(text-en)git%那块好像就出问题了，也就没怎么管了，现在用%(text-en)Windows%版的%(text-en)Github%，还挺好用的，不过这次在%(text-en)Ubuntu%下也摸清楚了%(text-en)git%的大概用法（之前其实连`pull`、`push`、`commit`等最基本的命令都不知道，只知道`clone` T\^T）。了解到@{{ "{{site.title " }}}}@和@{{ "{% for post in site.categories.blog " }}%}@这些原来是["Liquid(Liquid Wiki)":link4]的语法，是在第2次看这篇文章的时候，之前@clone@了BeiYuu.com的源代码，这些代码片段完全不知道是怎么来的，也不知道自己改怎么用，只是依样画葫芦。了解了%(text-en)Liquid%之后，也能更好地使用["YAML(Jekyll Wiki - YAML Front Matter)":link5]的那些变量了。
+阮一峰["那篇文章(搭建一个免费的，无限流量的Blog----github Pages和Jekyll入门)":link2]之前就看过，但是在[%(text-en)git%]那块好像就出问题了，也就没怎么管了，现在用[%(text-en)Windows%]版的[%(text-en)Github%]，还挺好用的，不过这次在[%(text-en)Ubuntu%]下也摸清楚了[%(text-en)git%]的大概用法（之前其实连`pull`、`push`、`commit`等最基本的命令都不知道，只知道`clone` T\^T）。了解到[@{{ "{{site.title " }}}}@]和[@{{ "{% for post in site.categories.blog " }}%}@]这些原来是["Liquid(Liquid Wiki)":link4]的语法，是在第2次看这篇文章的时候，之前[@clone@]了BeiYuu.com的源代码，这些代码片段完全不知道是怎么来的，也不知道自己改怎么用，只是依样画葫芦。了解了[%(text-en)Liquid%]之后，也能更好地使用["YAML(Jekyll Wiki - YAML Front Matter)":link5]的那些变量了。
 
 找到一个篇好博客：["基于jekyll的github建站指南(基于jekyll的github建站指南)":link6]。
 
-发现其实可以本地解析好静态页面然后直接上传到%(text-en)Github%上去，完全没有必要因为%(text-en)rdiscount%等问题折腾半天（改成了%(text-en)karmdown%在%(text-en)Github%上解析的结果也和本地解析的结果不同！）。。。
+发现其实可以本地解析好静态页面然后直接上传到[%(text-en)Github%]上去，完全没有必要因为[%(text-en)rdiscount%]等问题折腾半天（改成了[%(text-en)karmdown%]在[%(text-en)Github%]上解析的结果也和本地解析的结果不同！）。。。
 
 [link1]http://beiyuu.com/github-pages/
 [link2]http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html
