@@ -2,7 +2,7 @@ timezone:      Asia/Shanghai
 encoding:      utf-8
 permalink:     /blog/:year:month:day/:title.html
 
-paginate:      2
+paginate:      7
 paginate_path: "blog/page:num/"
 
 highlighter:   pygments

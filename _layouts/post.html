@@ -2,16 +2,33 @@
 layout: html5_base
 ---
 
-<article id="post">
-	<header>
-		<h1><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
-		<p>{{ page.date|date:"%Y-%m-%d" }}</p>
-	</header>
+<div id="main_content">
+    <header id="main_header">
+    </header>
 
-	{{ content }}
+    <article id="post">
+        <header>
+            <h1><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
+            <p>{{ page.date|date:"%Y-%m-%d" }}</p>
+        </header>
 
-	<footer>
-		<hr />
-		<p>Thanks for your time :-)</p>
-	</footer>
-</article>
+        <div id="post_content">
+            {{ content }}
+        </div>
+
+        <footer>
+            <hr />
+            <p>Thanks for your time :-)</p>
+        </footer>
+    </article>
+</div>
+
+<div id="side_content">
+    <header id="side_header">
+        <nav>
+            <a id="nav1" href="/index.html">首页</a>
+        </nav>
+    </header>
+</div>
+
+<link rel="stylesheet" href="/css/post.css" />
