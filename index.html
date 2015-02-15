@@ -1,50 +1,73 @@
 ---
-layout: default
-title: II-Matto
+layout: html5_base
 ---
 
-When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\)
+<div id="main_content">
+    <header id="main_header">
+    </header>
 
-$$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
+    <div id="blog_list">
+        <!-- This loops through the paginated posts -->
+        <ul>
+            {% for post in paginator.posts %}
+            <li class="blog_list_item">
+                <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                <p class="author">
+                    <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+                </p>
+                <div class="blog_list_tag_wrapper">
+					<ul class="tag_list">
+						{% for tag in post.tags %}
+						<li><a href="">{{ tag }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+                <div class="content">
+                    {{ post.excerpt }}
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
 
-<!-- This loops through the paginated posts -->
-{% for post in paginator.posts %}
-  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
-  <p class="author">
-    <span class="date">{{ post.date }}</span>
-  </p>
-  <div class="content">
-    {{ post.excerpt }}
-  </div>
-{% endfor %}
+        <div id="blog_list_pagination">
+            {% if paginator.total_pages > 1 %}
+            <div class="pagination">
+              {% if paginator.previous_page %}
+                <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; 上一页</a>
+              {% else %}
+                <span>&laquo; 上一页</span>
+              {% endif %}
 
+              {% for page in (1..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                  <em>{{ page }}</em>
+                {% elsif page == 1 %}
+                  <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+                {% else %}
+                  <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+                {% endif %}
+              {% endfor %}
 
-{% if paginator.total_pages > 1 %}
-<div class="pagination">
-  {% if paginator.previous_page %}
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
-  {% else %}
-    <span>&laquo; Prev</span>
-  {% endif %}
+              {% if paginator.next_page %}
+                <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">下一页 &raquo;</a>
+              {% else %}
+                <span>下一页 &raquo;</span>
+              {% endif %}
+            </div>
+            {% endif %}
+        </div>
 
-  {% for page in (1..paginator.total_pages) %}
-    {% if page == paginator.page %}
-      <em>{{ page }}</em>
-    {% elsif page == 1 %}
-      <a href="{{ '/index.html' | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
-    {% else %}
-      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
-    {% endif %}
-  {% endfor %}
+    </div>
 
-  {% if paginator.next_page %}
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
-  {% else %}
-    <span>Next &raquo;</span>
-  {% endif %}
-</div>
-{% endif %}
-
+    <div id="sticky_notes">
+        <ul>
+            <li id="note1">
+                When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\)
+            </li>
+            <li id="note2">
+                $$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
+            </li>
+            <li id="note3">
 {% highlight ruby linenos %}
 def show
   @widget = Widget(params[:id])
@@ -54,5 +77,20 @@ def show
   end
 end
 {% endhighlight %}
+            </li>
+            <li id="note4">
+                <p>这深宫后庭就是一个舞台，台上、台下皆是戏，没有人能置身事外，痛痛快快地唱一出属于自己的好戏吧，莫问前程凶吉，但求落幕无悔。</p>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div id="side_content">
+    <header id="side_header">
+        <nav>
+            <a id="nav1" href={{site.url}}>首页</a>
+        </nav>
+    </header>
+</div>
 
 <link rel="stylesheet" href="/css/index.css" />

@@ -3,10 +3,227 @@
 
 @import "code_monokai";
 
-ul {
-    font-size: 20px;
+body {
+    background: url("/img/bg.jpg") repeat;
+    font-family: "Times New Roman", "Comic Sans MS", "微软雅黑";
 }
 
-body {
-    background: #555;
+p {
+    text-indent: 2em;
+}
+
+a {
+    color: #E49F9F;
+}
+
+.MathJax .mb { color: inherit }
+.MathJax .mf { color: inherit }
+.MathJax .mh { color: inherit }
+.MathJax .mi { color: inherit }
+.MathJax .mo { color: inherit }
+
+#content_wrapper {
+    width: 100%;
+    min-width: 960px;
+}
+
+#main_content {
+    width: 80%;
+    float: left;
+    padding-top: 15px;
+}
+
+#side_content {
+    width: 20%;
+    float: left;
+    padding-top: 5px;
+}
+
+#main_header {
+    text-align: center;
+    height: 150px;
+    overflow: hidden;
+    background: url("/img/tmp.jpg");
+    margin: 0px 20px;
+}
+
+#blog_list {
+    margin: 30px 0px;
+}
+
+#blog_list > ul {
+    margin: 20px;
+    list-style: none;
+    border-bottom: 1px dashed #fff;
+}
+
+.blog_list_item {
+    border-top: 1px dashed #fff;
+    padding: 15px 5px;
+    margin-bottom: 30px;
+}
+
+.blog_list_item h2 {
+    font-size: 25px;
+    display: inline-block;
+}
+
+.blog_list_item h2 a {
+    color: #2AA1B6;
+    text-decoration: none;
+}
+
+.blog_list_item h2 a:hover {
+    color: #49DEF9;
+}
+
+p.author {
+    text-indent: 0em;
+    color: #F0A736;
+    display: inline-block;
+    float: right;
+}
+
+.blog_list_tag_wrapper {
+    margin-top: 20px;
+}
+
+.tag_list > li {
+    display: inline-block;
+    margin: 0px 5px;
+}
+
+.tag_list > li a {
+    text-decoration: none;
+    border: 1px solid #abc;
+    padding: 3px 5px;
+}
+
+.tag_list > li a:hover {
+    background: #444F4F;
+    color: #F45F8F;
+}
+
+.blog_list_item .content {
+    color: #CFCABD;
+    font-size: 15px;
+    line-height: 25px;
+    margin-top: 25px;
+}
+
+#blog_list_pagination {
+    text-align: center;
+    color: #fff;
+}
+
+#blog_list_pagination a {
+    padding: 0px 5px;
+    color: #4EBD42;
+}
+
+#blog_list_pagination span {
+    padding: 0px 5px;
+}
+
+#sticky_notes {
+    margin-top: 70px;
+    color: #fff;
+}
+
+#sticky_notes ul {
+    margin-left: 20px;
+}
+
+#sticky_notes ul li {
+    margin: 15px;
+    max-width: 400px;
+    padding: 5px;
+    
+    margin-bottom: 20px;
+    position: relative;
+    float: left;
+
+	-moz-transition: -moz-transform .15s linear;
+	-o-transition: -o-transform .15s linear;
+	-webkit-transition: -webkit-transform .15s linear;
+	-ms-transition: -ms-transform .15s linear;
+}
+
+#note1 {
+    -webkit-transform: rotate(-4deg);
+	-o-transform: rotate(-4deg);
+	-moz-transform: rotate(-4deg);
+	-ms-transform: rotate(-4deg);
+
+    color: #7CBFCF;
+    width: 240px;
+    top: 20px;
+    left: 30px;
+}
+
+#note2 {
+    -webkit-transform: rotate(4deg);
+	-o-transform: rotate(4deg);
+	-moz-transform: rotate(4deg);
+	-ms-transform: rotate(4deg);
+    color: #CA82C1;
+    top: -50px;
+    left: 30px;
+}
+
+#note3 {
+    -webkit-transform: rotate(-2deg);
+	-o-transform: rotate(-2deg);
+	-moz-transform: rotate(-2deg);
+	-ms-transform: rotate(-2deg);
+    top: 20px;
+    left: 20px;
+}
+
+#note4 {
+    -webkit-transform: rotate(-1deg);
+	-o-transform: rotate(-1deg);
+	-moz-transform: rotate(-1deg);
+	-ms-transform: rotate(-1deg);
+    color: #7BA075;
+    width: 280px;
+
+    font-size: 14px;
+    line-height: 22px;
+    left: 160px;
+    top: -40px;
+}
+
+#note5 {
+	-webkit-transform: rotate(1deg);
+	-o-transform: rotate(1deg);
+	-moz-transform: rotate(1deg);
+	-ms-transform: rotate(1deg);
+}
+
+.lineno {
+    color: #fff;
+    font-size: 12px;
+}
+
+#side_header {
+    margin-top: 45px;
+}
+
+#side_header nav a {
+    text-decoration: none;
+    float: right;
+    padding: 5px 10px;
+    border-left: 4px solid #22AEC7;
+    border-top: 1px dashed #22AEC7;
+    border-bottom: 1px dashed #22AEC7;
+    color: #22AEC7;
+}
+
+#nav1 {
+    width: 70px;
+}
+
+#nav1:hover {
+    width: 80px;
 }

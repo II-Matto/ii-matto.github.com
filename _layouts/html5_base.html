@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="author" content="{{ site.author.name }}" />
+    <meta name="description" content="{{ site.description }}" />
+
+	<title>{% if page.title %}{{ page.title }} {% else %} II-Matto {% endif %}</title>
+
+	<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="/js/html5.js"></script>
+
+    <link rel="stylesheet" href="/css/reset.css" />
+</head>
+
+<body>
+	<div id="content_wrapper">
+		{{ content }}
+	</div>
+</body>
+
+</html>

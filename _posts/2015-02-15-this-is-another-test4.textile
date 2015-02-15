@@ -1,0 +1,17 @@
+---
+title: This is a Test!
+categories: [diary, misc]
+tags: [Github Pages, Jekyll, Ruby]
+---
+
+这是一段测试文字：caffe 是当下一个很常用的 C++/CUDA 的 Deep Convolutional Neural Networks (CNNs) 的库，由于清晰的代码结构和设计，并且速度也很快，所以不论是学术界还是工业界，要做一些扩展工作的时候经常会选用它。当然现在随着 Deep Learning 的流行，相关的计算库也繁荣起来，许多知名的库大都有各自的特色，具体要选用哪一个的话还得看自己的需求而定。
+
+<!-- End of Excerpt -->
+
+Can Chinese be used?
+
+测试一下中文。
+
+When \(a \ne 0\), there are two solutions to \(ax^2 + bx + c = 0\) and they are \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}.\)
+
+$$J_\alpha(x) = \sum\limits_{m=0}^\infty \frac{(-1)^m}{m! \, \Gamma(m + \alpha + 1)}{\left({\frac{x}{2}}\right)}^{2 m + \alpha}$$
