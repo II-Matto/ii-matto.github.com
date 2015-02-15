@@ -41,6 +41,11 @@
     text-decoration: none;
     color: #4BAFD3;
     font-weight: bold;
+    border-bottom: 0px;
+}
+
+#post header h1 > a:hover {
+    color: #49DEF9;
 }
 
 #post header p {
