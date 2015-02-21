@@ -1,0 +1,28 @@
+---
+title: 特征选择
+categories: [ml, clip]
+tags: [Feature Selection, Machine Learning]
+---
+
+p(content_excerpt). 读了一个关于特征选择的博客系列：Selecting Good Features，一共四个部分，["Part I: Univariate Selection":http://blog.datadive.net/selecting-good-features-part-i-univariate-selection/]，["Part II: Linear Models and Regularization":http://blog.datadive.net/selecting-good-features-part-ii-linear-models-and-regularization/]，["Part III: Random Forests":http://blog.datadive.net/selecting-good-features-part-iii-random-forests/]，["Part IV: Stability Selection, RFE and Everyting Side by Side":http://blog.datadive.net/selecting-good-features-part-iv-stability-selection-rfe-and-everyting-side-by-side/]。
+
+<!-- End of Excerpt -->
+
+特征选择的目的通常有两个：
+
+# 降维，提高模型的泛化能力，避免过拟合
+# 理解不同变量所起的作用
+
+p(noindent). 一种特征选择的方法往往侧重于某一个方面，因此对于不同的目标要有针对性地选择相应的方法。
+
+h2(#uni_sel). 单变量特征选择
+
+这类方法分别考虑每一个特征和响应变量（[%(text-en)Response Variable%]）之间的关系，对于理解各个变量所起的作用有较大帮助，然而如果用于降维来提高模型的泛化能力，其并不能保证构造出的特征集在这个意义下是最优的。
+
+[%(para_header)相关系数%] 最简单方法的就是计算特征变量和响应变量之间的相关系数（[%(text-en)Pearson Correlation Coefficient%]）。相关系数衡量了两个变量之间的[*线性相关程度*]，取值范围是[%(math-inline)\([-1, 1]\)%]，其中[%(math-inline)\(-1\)%]表示负相关，[%(math-inline)\(1\)%]表示正相关，而[%(math-inline)\(0\)%]表示[*线性不相关*]----这一点要特别注意，相关系数为[%(math-inline)\(0\)%]不是表示两个变量之间没有任何关系，只是说明不存在线性的关系，而这也正是相关系数的缺陷所在。另外，务必把 _相关_ 关系和 _因果_ 关系区分开，两个变量呈现出正相关的关系，不能说明一个是原因而另一个是结果。在计算相关系数的同时，还应该计算[%(math-inline)\(p\)%]值，如果相关系数接近于[%(math-inline)\(1\)%]或者[%(math-inline)\(-1\)%]，但是[%(math-inline)\(p\)%]值比较大，那说明在当前规模的样本中，观察到这种相关性很有可能是种偶然。[1]
+
+[%(para_header)互信息 & 极大信息系数%] 互信息（[%(text-en)Mutual Information%]）可以衡量非线性的关系，两个离散型随机变量[%(math-inline)\(X\)%]和[%(math-inline)\(Y\)%]之间的互信息定义如下：
+[%(math-block)$$I(X, Y) = \sum_{x} \sum_{y} p(x, y) \ln \frac{p(x, y)}{p(x)\, p(y)} $$%]
+根据定义，如果两个随机变量相互独立，则互信息为[%(math-inline)\(0\)%]，而事实上，互信息正是衡量了两个变量之间的独立性。
+
+fn1. 在[%(text-en)Python%]中可以直接用[%(text-en)scipy%]提供的["@pearsonr()@":http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.pearsonr.html]函数计算相关系数和[%(math-inline)\(p\)%]值，还可以用["@f_regression()@":http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html]函数来针对多个特征计算[%(math-inline)\(p\)%]值。

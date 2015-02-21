@@ -65,6 +65,16 @@ p.author {
     margin-top: 25px;
 }
 
+.blog_list_item .content a {
+    color: #AB93B2;
+    text-decoration: none;
+    border-bottom: 1px dashed #AB93B2;
+}
+
+.blog_list_item .content a:hover {
+    color: #D3AFDD;
+}
+
 #blog_list_pagination {
     text-align: center;
     color: #fff;

@@ -10,6 +10,21 @@
     padding: 0px 3px;
 }
 
+.math-inline, .math-block {
+    color: #CFD3BD;
+    padding: 0px 3px;
+}
+
+.math-block {
+    display: block;
+    margin-bottom: -25px;
+}
+
+.para_header {
+    margin-right: 15px;
+    color: #eee;
+}
+
 #post {
     margin: 50px 20px 20px 20px;
     font-size: 15px;
@@ -27,6 +42,10 @@
     color: #D3AFDD;
 }
 
+#post a code:hover {
+    color: #84CCF2;
+}
+
 #post p {
     margin-top: 9px;
 }
@@ -34,10 +53,11 @@
 #post header {
     text-align: center;
     margin-bottom: 30px;
+    font-family: "Times New Roman", "Comic Sans MS", "宋体";
 }
 
 #post header h1 > a {
-    font-size: 25px;
+    font-size: 28px;
     text-decoration: none;
     color: #4BAFD3;
     font-weight: bold;
@@ -48,7 +68,7 @@
     color: #49DEF9;
 }
 
-#post header p {
+#post header p, p.noindent {
     text-indent: 0em;
 }
 
@@ -57,4 +77,101 @@ code {
     padding: 0px 3px;
     font-family: Courier New, Consolas;
     font-size: 13px;
+}
+
+#post_content {
+    margin-bottom: 40px;
+}
+
+#post_content p.content_excerpt {
+    width: 65%;
+    padding: 10px 3px;
+    margin: 0px auto 40px auto;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    color: #CFCABD;
+}
+
+#post_content ol {
+    list-style: decimal;
+}
+
+#post_content ul {
+    list-style: disc;
+}
+
+#post_content ul, #post_content ol {
+    margin: 7px 45px;
+    color: #A6A361;
+    font-size: 0.85em;
+}
+
+#post_content h2 {
+    font-size: 20px;
+    margin: 25px 0px 7px 0px;
+    font-family: "Times New Roman", "Comic Sans MS", "宋体";
+    color: #fff;
+}
+
+#post_content p.footnote a sup {
+    vertical-align: super;
+    font-size: smaller;
+    padding: 0px 3px;
+}
+
+#post_content sup.footnote {
+    vertical-align: 2px;
+    font-size: 11px;
+}
+
+#post_content sup.footnote a::before {
+    content: "[";
+}
+
+#post_content sup.footnote a::after {
+    content: "]";
+}
+
+#post_content sup.footnote a, #post_content p.footnote a {
+    color: #fff;
+    border-bottom: 0px;
+}
+
+#post_content sup.footnote a:hover {
+    color: #58C251;
+}
+
+#post_content p.footnote {
+    color: #B3ADAD;
+    text-indent: 0em;
+    font-size: 0.85em;
+}
+
+#post_content p.footnote .text-en {
+    font-size: 1.2em;
+}
+
+p#fn1 {
+    margin-top: 40px;
+}
+
+#post_content p strong {
+    padding: 0px 3px;
+    color: #D88989;
+}
+
+#post_content p em::before {
+    content: "“";
+    font-family: "微软雅黑";
+    margin-left: -5px;
+}
+
+#post_content p em::after {
+    content: "”";
+    font-family: "微软雅黑";
+    margin-right: -5px;
+}
+
+#post > footer {
+    height: 200px;
 }
