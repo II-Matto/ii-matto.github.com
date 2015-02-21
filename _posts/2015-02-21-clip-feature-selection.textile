@@ -9,7 +9,6 @@ p(content_excerpt). 读了一个关于特征选择的博客系列：Selecting Go
 <!-- End of Excerpt -->
 
 特征选择的目的通常有两个：
-
 # 降维，提高模型的泛化能力，避免过拟合
 # 理解不同变量所起的作用
 
@@ -22,7 +21,29 @@ h2(#uni_sel). 单变量特征选择
 [%(para_header)相关系数%] 最简单方法的就是计算特征变量和响应变量之间的相关系数（[%(text-en)Pearson Correlation Coefficient%]）。相关系数衡量了两个变量之间的[*线性相关程度*]，取值范围是[%(math-inline)\([-1, 1]\)%]，其中[%(math-inline)\(-1\)%]表示负相关，[%(math-inline)\(1\)%]表示正相关，而[%(math-inline)\(0\)%]表示[*线性不相关*]----这一点要特别注意，相关系数为[%(math-inline)\(0\)%]不是表示两个变量之间没有任何关系，只是说明不存在线性的关系，而这也正是相关系数的缺陷所在。另外，务必把 _相关_ 关系和 _因果_ 关系区分开，两个变量呈现出正相关的关系，不能说明一个是原因而另一个是结果。在计算相关系数的同时，还应该计算[%(math-inline)\(p\)%]值，如果相关系数接近于[%(math-inline)\(1\)%]或者[%(math-inline)\(-1\)%]，但是[%(math-inline)\(p\)%]值比较大，那说明在当前规模的样本中，观察到这种相关性很有可能是种偶然。[1]
 
 [%(para_header)互信息 & 极大信息系数%] 互信息（[%(text-en)Mutual Information%]）可以衡量非线性的关系，两个离散型随机变量[%(math-inline)\(X\)%]和[%(math-inline)\(Y\)%]之间的互信息定义如下：
-[%(math-block)$$I(X, Y) = \sum_{x} \sum_{y} p(x, y) \ln \frac{p(x, y)}{p(x)\, p(y)} $$%]
-根据定义，如果两个随机变量相互独立，则互信息为[%(math-inline)\(0\)%]，而事实上，互信息正是衡量了两个变量之间的独立性。
+[%(math-block)$$I(X, Y) = \sum_{x\in\mathcal{X}} \sum_{y\in\mathcal{Y}} p(x, y) \log_{\,2} \frac{p(x, y)}{p(x)\, p(y)} $$%]
+上面取的是以[%(math-inline)\(2\)%]为底的对数，这样得到的互信息是以比特[%(text-en)Bit%]为单位。根据定义，如果两个随机变量相互独立，则互信息为[%(math-inline)\(0\)%]，而事实上，互信息正是衡量了两个变量之间的独立性。互信息的不足之处有两点：
+# 不是度量（三角不等式？），并且取值不在一个固定的范围中，没有进行归一化----这样在不同数据集上计算出来的互信息就不可比（有这样的需求吗？）。
+# 对于连续型随机变量不便于实际计算，需要首先进行离散化，而这个过程中要选择量化级数和量化间隔，这两个参数不同则计算的互信息也会不同。
+
+p(noindent). 为了解决互信息的问题，便有了极大信息系数（[%(text-en)Maximal Information Coefficient%]，[%(text-en)MIC%]），在计算[%(text-en)MIC%]的过程中，首先寻找一个最优的量化方式，然后再将取值归一化，确保取值区间总是[%(math-inline)\([0, 1]\)%]。[2]
+
+[%(para_header)Distance Correlation%] 也是克服了相关系数的问题，如果为[%(math-inline)\(0\)%]则表示两个变量一定是独立的。
+
+需要说明的是，很多情况下往往直接用最简单的相关系数就可以了，不需要用更加复杂的[%(text-en)MIC%]和[%(text-en)Distance Correlation%]。
+
+除了通过计算各种各样的指标来分析特征，还可以采用直接建模的方法，即直接用单个特征进行建模，然后比较不同模型的性能。相关系数其实就对应于做了线性回归，而对于非线性的关系可以采用决策树、随机森林等模型，或者在变换空间中采用线性模型。需要注意的是要防止过拟合，因此要控制树的深度，采用交叉验证等技术。
+
+这类单变量考察的方法比较适合于分析特征的作用、数据的结构和特点等，但是由于其无法去除特征集的冗余性，因此不是特别适合于选择特征来提升模型的性能。
+
+h2. 基于线性模型做特征选择
+
+其实就是在数据上拟合一个线性模型，然后看哪些特征对应的系数比较大，注意这需要特征的取值在同一个尺度上。简单线性模型的问题就在于容易受到噪声的影响，模型不稳定，尤其是在特征之间存在比较强的相关性时，因此往往需要加上正则化的约束----不过也未必就能完全解决问题。如果是[%(math-inline)\(L_1\)%]正则那就对应于[%(text-en)lasso%]模型，如果是[%(math-inline)\(L_2\)%]正则那就是岭回归[%(text-en)Ridge Regression%]，其中前者希望特征的系数尽可能为[%(math-inline)\(0\)%]，因此会得到稀疏解，其问题就是和不带正则的线性回归一样，在特征之间有相关性的时候模型会不稳定，而后者则希望权重更加均衡，相关的特征其权重会差不多，这样模型会更加稳定，不会因为噪声导致权重的变化非常大。根据二者的特点，[%(text-en)lasso%]适合于做特征选择，而岭回归适合于对特征进行解释。利用[%(text-en)Basic Expansion%]，可以变换到一个合适的特征空间，然后再用线性模型，这样就可以处理非线性的情况。
+
+h2. 基于随机森林做特征选择
+
+这个框架下有两种方法：[%(text-en)Mean Decrease Impurity%]和[%(text-en)Mean Decrease Accuracy%]
 
 fn1. 在[%(text-en)Python%]中可以直接用[%(text-en)scipy%]提供的["@pearsonr()@":http://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.stats.pearsonr.html]函数计算相关系数和[%(math-inline)\(p\)%]值，还可以用["@f_regression()@":http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html]函数来针对多个特征计算[%(math-inline)\(p\)%]值。
+
+fn2. 在[%(text-en)Python%]中可以借助于[%(text-en)minepy%]这个库来计算[%(text-en)MIC%]。

@@ -108,9 +108,15 @@ code {
 
 #post_content h2 {
     font-size: 20px;
-    margin: 25px 0px 7px 0px;
+    margin: 30px 0px 10px 0px;
     font-family: "Times New Roman", "Comic Sans MS", "宋体";
     color: #fff;
+    border-left: 5px solid #507A84;
+    padding: 4px 5px;
+}
+
+#post_content p.footnote {
+    margin-top: 0px;
 }
 
 #post_content p.footnote a sup {
@@ -151,7 +157,7 @@ code {
     font-size: 1.2em;
 }
 
-p#fn1 {
+#post_content p#fn1 {
     margin-top: 40px;
 }
 
