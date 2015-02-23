@@ -52,8 +52,17 @@ a {
     font-size: 12px;
 }
 
+#side_name {
+    font-size: 30px;
+    font-family: "楷体", "宋体";
+    float: right;
+    color: #35B32C;
+    margin-top: 20px;
+    margin-right: 10px;
+}
+
 #side_header {
-    margin-top: 45px;
+    margin-top: 80px;
 }
 
 #side_header nav a {
