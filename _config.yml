@@ -7,6 +7,8 @@ paginate_path: "blog/page:num/"
 
 highlighter:   pygments
 
+exclude:       [bak/, Gemfile, Gemfile.lock, README.textile]
+
 sass:
     sass_dir: _sass
     style:    :compressed
