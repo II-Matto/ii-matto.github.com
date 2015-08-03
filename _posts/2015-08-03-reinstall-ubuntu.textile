@@ -35,4 +35,11 @@ h2(#uni_sel). 安装CUDA
 
 h2(#uni_sel). 安装ruby
 
-主要是为了使用[%(text-en)Github Pages%]，需要[%(text-en)Jekyll%]。
+主要是为了使用[%(text-en)Github Pages%]，需要[%(text-en)Jekyll%]。这块出了点小问题，结果让我重装[%(text-en)ruby%]好多次，其实按照["官网":https://www.ruby-lang.org/en/documentation/installation/#apt]的说法，只需要[@sudo apt-get install ruby-full@]就可以，然后["下载RubyGems":https://rubygems.org/pages/download]，解压后进入到目录里面执行[@ruby setup.rb@]。
+
+然而我最后是用[%(text-en)rvm%]装的，装了和[%(text-en)Windows 7%]下面一样的[%(text-en)1.9.3p551%]版本。先说装[%(text-en)rvm%]，按照["官网":https://rvm.io/]上面的步骤来进行：
+
+bc(code_block). gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash -s stable
+
+p(noindent). 装好之后可以先看以下有哪些版本的[%(text-en)ruby%]，用命令[@rvm list known@]
