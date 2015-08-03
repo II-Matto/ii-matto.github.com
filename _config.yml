@@ -1,13 +1,15 @@
-timezone:      Asia/Shanghai
-encoding:      utf-8
-permalink:     /blog/:year:month:day/:title.html
+timezone:          Asia/Shanghai
+encoding:          utf-8
+permalink:         /blog/:year:month:day/:title.html
 
-paginate:      7
-paginate_path: "blog/page:num/"
+paginate:          7
+paginate_path:     "blog/page:num/"
 
-highlighter:   pygments
+highlighter:       pygments
 
-exclude:       [bak/, Gemfile, Gemfile.lock, README.textile]
+excerpt_separator: "<!-- End of Excerpt -->"
+
+exclude:           [bak/, Gemfile, Gemfile.lock, README.textile]
 
 sass:
     sass_dir: _sass
@@ -20,7 +22,6 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      excerpt_separator: "<!-- End of Excerpt -->"
   -
     scope:
       path: "projects"

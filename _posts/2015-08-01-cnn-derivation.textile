@@ -1,0 +1,18 @@
+---
+title: 训练CNN：反向传播算法的有关推导
+categories: [ml, dl, cnn]
+tags: [CNN, Deep Learning, Back-propogation, Machine Learning]
+---
+
+p(content_excerpt). 打算研究一下CNN的开源代码，于是想先把有关的理论给搞清楚了，主要是关于模型训练时反向传播算法中梯度计算公式的推导。
+
+<!-- End of Excerpt -->
+
+本地解析出问题了。。。好烦人。测试一下。
+
+
+
+h3. 其它参考资料：
+
+# Jake Bouvrie. Notes on Convolutional Neural Networks. Nov. 22, 2006. ["http://cogprints.org/5869/1/cnn_tutorial.pdf":http://cogprints.org/5869/1/cnn_tutorial.pdf]
+# Xu Tang. The Derivation about Convolutional Neural Networks. Nov. 5, 2014. ["http://takecareofbigboss.github.io/2015/05/28/The-Derivation-about-CNN-and-Antoencoder/":http://takecareofbigboss.github.io/2015/05/28/The-Derivation-about-CNN-and-Antoencoder/]
