@@ -1,0 +1,38 @@
+---
+title: 重装Ubuntu
+categories: [misc]
+tags: [Ubuntu, CUDA, Ruby, Jekyll]
+---
+
+p(content_excerpt). 重装[%(text-en)Ubuntu%]的记录，包括装好系统之后折腾各种应用程序的过程，留作备忘，作为以后重装的参考。
+
+<!-- End of Excerpt -->
+
+这次装的系统是[%(text-en)Ubuntu 14.04.2%]，用[%(text-en)UltraISO%]把镜像写到[%(text-en)USB%]里面，用U盘安装。在此之前，先把[%(text-en)Windows%]系统也给重装了，把[%(text-en)Windows 8.1%]企业版换回了[%(text-en)Windows 7%]旗舰版，然后直接把原来[%(text-en)Ubuntu%]的两个分区给删除了。
+
+安装[%(text-en)Ubuntu%]的时候还是采用很傻瓜的做法，直接选择[%(text-en)Alongside windows 7%]，于是分区什么的都是自动的。
+
+非常幸运的事情是：装好系统之后[*没有安装更新*]！以后都不要随意更新呢，而且短时间内还是都不要更新了，主要原因在于装了更新到时候装[%(text-en)CUDA%]会出问题，网上有人说重装了十几遍系统。。。
+
+装好系统之后有几件要做的事情：
+
+* 解决鼠标闪烁的问题：到系统设置的[%(text-en)Display%]中把[%(text-en)unknown display%]关掉。
+* 添加拼音输入法：直接去系统设置的[%(text-en)Text Entry%]中添加就可以，之前试过一次搜狗，当时感觉体验不是很好，所以决定还是先不要装搜狗拼音了。
+* 修改启动菜单的默认项（先装上vim：[@sudo apt-get install vim@]）：把[%(text-en)/etc/default/grub%]文件中[@GRUB_DEFAULT@]的值改成[%(text-en)Windows 7%]对应的项（从0开始计数，即为4），然后[@sudo update-grub@]。
+* 安装Windows下的字体：把需要安装的字体文件复制到[%(text-en)Ubuntu%]下面来，然后进行下面几步
+** 在[%(text-en)/usr/share/fonts%]目录下面建立单独的子目录，比方说叫做[%(text-en)winFonts%]（我用的是[%(text-en)mswindows%]）
+** 将需要安装的字体全部复制到新建的这个目录中来，进入到这个目录下面
+** [@sudo mkfontscale@]
+** [@sudo mkfontdir@]
+** [@sudo fc-cache -fv@]
+** 注销之后重新登录即可
+* 安装一些必要的包（先更新信息：[@sudo apt-get update@]）：[@build-essential@]，[@git@]
+* 修改[@.vimrc@]进行[%(text-en)vim%]的配置：
+
+h2(#uni_sel). 安装CUDA
+
+其实重装的主要目的是要用[%(text-en)CUDA%]，用[%(text-en)caffe%]，之前一直没有
+
+h2(#uni_sel). 安装ruby
+
+主要是为了使用[%(text-en)Github Pages%]，需要[%(text-en)Jekyll%]。
