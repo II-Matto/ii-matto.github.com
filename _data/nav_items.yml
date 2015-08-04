@@ -1,0 +1,8 @@
+- name: 主页
+  url: /index.html
+
+- name: 分类目录
+  url: /categories.html
+
+- name: 标签目录
+  url: /tags.html

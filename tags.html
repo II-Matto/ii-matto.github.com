@@ -1,0 +1,63 @@
+---
+layout: html5_base
+title: 标签目录
+---
+
+<div id="main_content">
+    <header id="main_header">
+    </header>
+
+    <div id="tag_list">
+    <ul>
+        {% assign tag_list = site.tags | sort %}
+        {% for tag in tag_list %}
+        <li>
+            <a href="{{ BASE_PATH }}{{ site.JB.tags_path }}#{{ tag[0] }}-ref">
+                {{ tag[0] | join: "/"  }}
+            </a>
+            <sup>{{ tag[1].size }}</sup>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
+
+    <div id="tag_post_list">
+    {% for tag in tag_list %}
+        <section class="post_list">
+            <h3 class="tag_name" id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+
+            <ol>
+            {% assign pages_list = tag[1] %}
+            {% for node in pages_list %}
+              {% if node.title != null %}
+                {% if group == null or group == node.group %}
+                    <li>
+                        <a href="{{ BASE_PATH }}{{node.url}}">{{node.title}}</a>
+                        <span class="post_date">{{ node.date | date: "%Y-%m-%d" }}</span>
+                    </li>
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            </ol>
+        </section>
+    {% endfor %}
+    </div>
+</div>
+
+<div id="side_content">
+    <div id="side_name">
+        {{ site.data.blog_info.name }}
+    </div>
+
+    <header id="side_header">
+        <nav id="side_nav">
+            <ul>
+                {% for item in site.data.nav_items %}
+                <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </header>
+</div>
+
+<link rel="stylesheet" href="/css/tags.css" />

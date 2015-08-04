@@ -9,7 +9,14 @@ layout: html5_base
     <article id="post">
         <header>
             <h1><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
-            <p>{{ page.date|date:"%Y %m %d" }}</p>
+            <p>创建时间：{{ page.date | date:"%Y-%m-%d" }}，最后更新：{{ page.date_updated }}</p>
+            
+            <ul class="tag_list">
+                <li><a class="first_category" href="/categories.html#{{ page.categories[0] }}-ref">{{ page.categories[0] }}</a></li>
+                {% for tag in page.tags %}
+                <li><a href="/tags.html#{{ tag }}-ref">{{ tag }}</a></li>
+                {% endfor %}
+            </ul>
         </header>
 
         <div id="post_content">
@@ -25,14 +32,21 @@ layout: html5_base
 
 <div id="side_content">
     <div id="side_name">
-        十五分钟
+        {{ site.data.blog_info.name }}
     </div>
 
     <header id="side_header">
-        <nav>
-            <a id="nav1" href="/index.html">首页</a>
+        <nav id="side_nav">
+            <ul>
+                {% for item in site.data.nav_items %}
+                <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                {% endfor %}
+            </ul>
         </nav>
     </header>
+
+    {% assign image_info = site.data.post_side_img[page.path] %}
+    <img id="post_side_img" src="{{ image_info.image }}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
 </div>
 
 <link rel="stylesheet" href="/css/post.css" />

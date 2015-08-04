@@ -1,7 +1,8 @@
 ---
 title: 特征选择
-categories: [ml, clip]
+categories: [ml]
 tags: [Feature Selection, Machine Learning]
+date_updated: 2015-02-21
 ---
 
 p(content_excerpt). 读了一个关于特征选择的博客系列：Selecting Good Features，一共四个部分，["Part I: Univariate Selection":http://blog.datadive.net/selecting-good-features-part-i-univariate-selection/]，["Part II: Linear Models and Regularization":http://blog.datadive.net/selecting-good-features-part-ii-linear-models-and-regularization/]，["Part III: Random Forests":http://blog.datadive.net/selecting-good-features-part-iii-random-forests/]，["Part IV: Stability Selection, RFE and Everyting Side by Side":http://blog.datadive.net/selecting-good-features-part-iv-stability-selection-rfe-and-everyting-side-by-side/]。

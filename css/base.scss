@@ -43,7 +43,7 @@ a {
 
 #side_content {
     width: 20%;
-    float: left;
+    float: right;
     padding-top: 5px;
 }
 
@@ -73,7 +73,15 @@ a {
     margin-top: 80px;
 }
 
-#side_header nav a {
+#side_nav {
+    float: right;
+    width: 90px;
+}
+
+#side_nav ul li {
+}
+
+#side_nav ul li a {
     text-decoration: none;
     float: right;
     padding: 5px 10px;
@@ -81,12 +89,10 @@ a {
     border-top: 1px dashed #22AEC7;
     border-bottom: 1px dashed #22AEC7;
     color: #22AEC7;
+    margin: 10px 0px;
+    min-width: 70px;
 }
 
-#nav1 {
-    width: 70px;
-}
-
-#nav1:hover {
-    width: 80px;
+#side_nav ul li a:hover {
+    min-width: 80px;
 }

@@ -2,6 +2,7 @@
 title: 重装Ubuntu
 categories: [misc]
 tags: [Ubuntu, CUDA, Ruby, Jekyll]
+date_updated: 2015-08-04
 ---
 
 p(content_excerpt). 重装[%(text-en)Ubuntu%]的记录，包括装好系统之后折腾各种应用程序的过程，留作备忘，作为以后重装的参考。

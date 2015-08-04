@@ -36,10 +36,43 @@ p.author {
     color: #F0A736;
     display: inline-block;
     float: right;
+    margin: 0px;
 }
 
 .blog_list_tag_wrapper {
     margin-top: 20px;
+}
+
+.tag_list > li a.first_category {
+    background: #3D8C10;
+    color: #fff;
+    border: 0px;
+    display: inline-block;
+    position: relative;
+    padding-right: 20px;
+}
+
+.tag_list > li a.first_category:hover {
+    background: #444F4F;
+    color: #fff;
+}
+
+.tag_list > li a.first_category:before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    border-top: 11px solid #000;
+    border-left: 11px solid #3D8C10;
+    width: 0;
+}
+
+.tag_list > li a.first_category:after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    border-bottom: 11px solid #000;
+    border-left: 11px solid #3D8C10;
+    width: 0;
 }
 
 .tag_list > li {
