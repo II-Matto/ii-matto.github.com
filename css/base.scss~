@@ -38,7 +38,7 @@ a {
     width: 80%;
     float: left;
     padding-top: 0px;
-    max-width: 1079px;
+    max-width: 1076px;
 }
 
 #side_content {
