@@ -343,3 +343,25 @@ code {
     position: absolute;
     z-index: -1;
 }
+
+#back-top {
+  position: fixed;
+  bottom: 30px;
+  margin-left: 50px;
+}
+
+#back-top a {
+  display: block;
+  background: #166C8A;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  transition: 0.5s;
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  color: #fff;
+}
+
+#back-top a:hover {
+  background-color: #5F6B6F;
+}

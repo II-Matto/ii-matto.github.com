@@ -2,6 +2,8 @@
 layout: html5_base
 ---
 
+<div id="top"></div>
+
 <div id="main_content">
     <header id="main_header">
     </header>
@@ -61,11 +63,41 @@ layout: html5_base
 
     {% assign image_info = site.data.post_side_img[page.path] %}
     <img id="post_side_img" src="{{ image_info.image }}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
+
+    <div id="back-top">
+        <a href="#">Top</a>
+    </div>
 </div>
 
 <link rel="stylesheet" href="/css/post.css" />
 
 <!----------------------------------------------------------->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+<script>
+  $(document).ready(function () {
+      if ($(this).scrollTop() < 600) {
+          $('#back-top').hide();
+      }
+
+      $(window).scroll(function () {
+          if ($(this).scrollTop() > 600) {
+              $('#back-top').fadeIn();
+          } else {
+              $('#back-top').fadeOut();
+          }
+      });
+      $('#back-top').click(function () {
+          $("html, body").animate({
+              scrollTop: 0
+          }, 300);
+          return false;
+      });
+  });
+</script>
+
+<!----------------------------------------------------------->
+
 <script type="text/javascript">
 /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
 var disqus_shortname = 'iimatto'; // required: replace example with your forum shortname
@@ -78,4 +110,5 @@ s.src = '//' + disqus_shortname + '.disqus.com/count.js';
 (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
 }());
 </script>
+
 <!----------------------------------------------------------->
