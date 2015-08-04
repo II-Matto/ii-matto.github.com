@@ -101,7 +101,7 @@ h2(#uni_sel). 杂七杂八
 
 一个非常不错的博客模板：["minixalpha/StrayBirds":https://github.com/minixalpha/StrayBirds]。
 
-有序列表中给编号加括号：["Ordered list (HTML) lower-alpha with right parentheses?":http://stackoverflow.com/questions/1632005/ordered-list-html-lower-alpha-with-right-parentheses]。注意嵌套的有序列表也会采用一样的形式，可以通过设置不同的[@class@]来控制编号。
+有序列表中给编号加括号：[Ordered list (HTML) lower-alpha with right parentheses?:http://stackoverflow.com/questions/1632005/ordered-list-html-lower-alpha-with-right-parentheses]。注意嵌套的有序列表也会采用一样的形式，可以通过设置不同的[@class@]来控制编号。
 
 fn1. Knightwind. ["gem install ECONNRESET 问题":http://imggt.com/ruby/gem-install-error.html].
 
