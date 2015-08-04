@@ -125,7 +125,7 @@ h3 {
 
 #post header ul.tag_list > li {
     display: inline-block;
-    margin: 0px 5px;
+    margin-right: 10px;
 }
 
 #post header ul.tag_list > li > a {
@@ -138,6 +138,18 @@ h3 {
 #post header ul.tag_list > li > a:hover {
     background: #444F4F;
     color: #F45F8F;
+}
+
+#post header #header_comment_count {
+    float: right;
+}
+
+#post header #header_comment_count a {
+    color: #A9AF2B;
+}
+
+#post header #header_comment_count a:hover {
+    color: #C7CE39;
 }
 
 p.noindent {

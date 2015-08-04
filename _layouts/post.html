@@ -9,7 +9,7 @@ layout: html5_base
     <article id="post">
         <header>
             <h1><a href="{{ page.url }}" title="{{ page.title }}">{{ page.title }}</a></h1>
-            <p>创建时间：{{ page.date | date:"%Y-%m-%d" }}，最后更新：{{ page.date_updated }}</p>
+            <p>创建时间：{{ page.date | date:"%Y-%m-%d" }}，最后更新：{{ page.date_updated }}<span id="header_comment_count"><a href="{{ page.url }}#disqus_thread"></a></span></p>
             
             <ul class="tag_list">
                 <li><a class="first_category" href="/categories.html#{{ page.categories[0] }}-ref">{{ page.categories[0] }}</a></li>
@@ -64,3 +64,18 @@ layout: html5_base
 </div>
 
 <link rel="stylesheet" href="/css/post.css" />
+
+<!----------------------------------------------------------->
+<script type="text/javascript">
+/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+var disqus_shortname = 'iimatto'; // required: replace example with your forum shortname
+
+/* * * DON'T EDIT BELOW THIS LINE * * */
+(function () {
+var s = document.createElement('script'); s.async = true;
+s.type = 'text/javascript';
+s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+(document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
+</script>
+<!----------------------------------------------------------->
