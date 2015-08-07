@@ -12,9 +12,12 @@ layout: html5_base
             {% for post in paginator.posts %}
             <li class="blog_list_item">
                 <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+                <div class="date">{{ post.date | date: "%Y-%m-%d" }}</div>
+                <!--
                 <p class="author">
                     <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
                 </p>
+                -->
                 <div class="blog_list_tag_wrapper">
 					<ul class="tag_list">
                         <li><a class="first_category" href="/categories.html#{{ post.categories[0] }}-ref">{{ post.categories[0] }}</a></li>

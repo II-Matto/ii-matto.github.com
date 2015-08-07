@@ -62,7 +62,7 @@ layout: html5_base
     </header>
 
     {% assign image_info = site.data.post_side_img[page.path] %}
-    <img id="post_side_img" src="{{ image_info.image }}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
+    <img id="post_side_img" src="{% if image_info.image != null %} {{ site.data.blog_info.res_prefix }}{{ image_info.image }} {% endif %}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
 
     <div id="back-top">
         <a href="#">Top</a>
@@ -73,7 +73,13 @@ layout: html5_base
 
 <!----------------------------------------------------------->
 
+<!--
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.4.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+-->
+<script src="{{ site.data.blog_info.res_prefix }}/js/jquery-2.1.4.min.js"></script>
+
 <script>
   $(document).ready(function () {
       if ($(this).scrollTop() < 600) {

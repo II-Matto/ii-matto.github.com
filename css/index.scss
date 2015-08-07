@@ -31,12 +31,19 @@
     color: #49DEF9;
 }
 
+/*
 p.author {
     text-indent: 0em;
     color: #F0A736;
     display: inline-block;
     float: right;
     margin: 0px;
+}
+*/
+
+.blog_list_item div.date {
+    color: #F0A736;
+    float: right;
 }
 
 .blog_list_tag_wrapper {

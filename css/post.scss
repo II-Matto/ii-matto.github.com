@@ -239,6 +239,18 @@ code {
     padding: 4px 5px;
 }
 
+#post_content h3 {
+    border-top: 2px solid #daad22;
+    border-bottom: 2px solid #daad22;
+    padding: 1px 4px;
+    float: left;
+    margin: 20px 0px 10px 0px;
+}
+
+#post_content p {
+    clear: both;
+}
+
 #post_content p.footnote {
     margin-top: 0px;
     line-height: 1.1em;
@@ -301,14 +313,12 @@ code {
 
 #post_content p em::before {
     content: "“";
-    font-family: "微软雅黑";
-    margin-left: -5px;
+    font-family: "宋体";
 }
 
 #post_content p em::after {
     content: "”";
-    font-family: "微软雅黑";
-    margin-right: -5px;
+    font-family: "宋体";
 }
 
 #post_content blockquote {

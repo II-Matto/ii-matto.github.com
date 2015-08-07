@@ -1,0 +1,83 @@
+---
+title: 事件检测：视频表示，语义显著性
+categories: [论文阅读]
+tags: [事件检测, VALSE Webinar, 悉尼科技大学 UTS, 杨易, 卷积神经网络 CNN]
+date_updated: 2015-08-07
+---
+
+p(content_excerpt). 三篇文章，其中两篇关于事件检测，一个针对视频表示，通过对[%(text-en)CNN%]特征进行编码，另一个引入了“语义显著性”。第三篇是对最大间隔矩阵分解（[%(text-en)Maximun Margin Matrix Factorization%]，[%(math-inline)\(M^3F\)%]）算法的改进，采用了在黎曼子空间进行主动搜索的方式。
+
+<!-- End of Excerpt -->
+
+这3篇论文都是悉尼科技大学["杨易":http://www.cs.cmu.edu/~yiyang/]老师组的工作，第一作者都是他的学生。[1]
+
+# ["Zhongwen Xu":http://www.cs.cmu.edu/~zhongwen/], Yi Yang and Alexander G. Hauptmann. ["A Discriminative CNN Video Representation for Event Detection":http://www.cs.cmu.edu/~zhongwen/pdf/MED_CNN.pdf]. CVPR 2015.
+# ["Xiaojun Chang":http://www.cs.cmu.edu/~uqxchan1/], Yi Yang, Eric P. Xing and Yao-Liang Yu. ["Complex Event Detection using Semantic Saliency and Nearly-Isotonic SVM":http://jmlr.org/proceedings/papers/v37/changa15.pdf]. ICML 2015 (Oral).
+# ["Yan Yan":https://sites.google.com/site/yanyancv/], Mingkui Tan, Ivor Tsang, Yi Yang, Chengqi Zhang and Qinfeng Shi. ["Scalable Maximum Margin Matrix Factorization by Active Riemannian Subspace Search":http://ijcai.org/papers15/Papers/IJCAI15-560.pdf]. IJCAI 2015.
+
+p(noindent). 徐仲文目前发的7篇文章都是关于视频分析和事件检测——他现在才博士第二年，工作比较偏视觉方面，主题也还算集中。常晓军的工作似乎比较偏多媒体和数据挖掘，也有一些偏理论的文章，发的会议有点杂（做的问题看上去也挺杂），有好几篇关于事件检测的，不过竟然都不是发在视觉方向的会议和期刊上面，事实上除了一篇[%(text-en)IJCV%]之外，其它文章都是发在非视觉会议和期刊上的。闫岩的工作好像主题也不是很集中，不过他是硕士生，所以没有成体系地去研究一个问题倒也比较正常。
+
+h2. A Discriminative CNN Video Representation for Event Detection
+
+不知道为什么，觉得这篇文章写得莫名的清晰，引言部分读下来觉得有理有据，而且很顺畅，个人感觉文章的逻辑还是很不错的。当然这篇文章的工作本身也非常有意义，不仅解决了特征提取上计算开销太大的问题，极大地降低了对计算资源的需求，缩短了实验周期，还大幅度提高了性能，用自动学习的特征超越了人工设计的特征，而且用来提取特征的[%(text-en)CNN%]还不是用任务相关的数据训练的，也没有经过精调（[%(text-en)fine-tuning%]），是直接使用在[%(text-en)ImageNet%]上训练好的16层[%(text-en)VGG-Net%]。当然，没有做精调的原因文章中也有提到，在不对网络结构做改进的条件下，利用现有数据对网络进行精调并没有什么作用。
+
+从另一个侧面来看，这篇文章还包含了一个很重要的信息——其实别的工作中也有体现，虽然[%(text-en)CNN%]是一个很强大的模型，但是也并不是说直接拿来用就一定能够把性能做上去，在把[%(text-en)CNN%]应用到具体的某个任务中去的时候，仍然会存在不少需要解决的问题，只有真正用好了、用对了才能真正发挥其效用，而和其它方法的配合是一条非常重要的思路，并不是说光有一个[%(text-en)CNN%]就真的够了。
+
+[%(para_header)动机：Video Analysis Cost A Lot%] 在视频处理的过程中，由于数据量很大，因此对于计算能力的要求非常高，在计算资源上的需求非常大。徐仲文举了他自己实验过程中的一个例子，在集群中用[*1000*]核来提取[%(text-en)TRECVID MEDEval 14%]数据集中视频的[%(text-en)IDT%]特征，总共花了一周时间——然而并不是所有的人都有这么大的集群可以用的，这样一来要提取特征就变得完全不可能。徐仲文这篇文章要解决的就是这个问题：[*在计算资源有限的条件下，设计一种新的特征，使得特征提取变得更加容易和快速，同时这个特征还要比原来最好的特征更加有效*]。
+
+bq. ... a discriminative video representation for event detection over a large scale video dataset when only limited hardware resources are available.
+
+p(noindent). 更具体地或者从更小的角度来说：这篇文章要探索的是如何有效地利用[%(text-en)CNN%]来提升事件检测的性能，这里面有一个限制，就是目前来说[%(text-en)CNN%]都只能给每一帧单独提取特征。
+
+[%(para_header)贡献%] 这篇文章所声称的贡献包括三个方面：
+
+# 提出用编码的方式来聚集视频中各帧的特征，而不是采用[%(text-en)max-pooling%]或者[%(text-en)average-pooling%]的方式，证明了采用合适的编码方式能够显著地提升事件检测的性能。
+# 设计了新的视频帧特征：潜在概念描述子（[%(text-en)Latent Concept Descriptor%]，[%(text-en)LCD%]），这一特征在包含了更丰富的视觉信息的同时，在计算上的开销也更小。
+# 这是相对弱化了的一点，就是采用[%(text-en)Production Quantization%]来对特征做压缩，进一步降低存储空间上的开销，并通过查表法的设计提升了速度。
+
+p(noindent). 在两个最大的数据集上，本文都做到了[*10%*]的性能提升，真的是很惊人了！
+
+[%(para_header)Video Pooling on CNN Descriptors%] 个人觉得[%(text-en)Video Pooling%]这个说法好奇怪，从语法上来说和[%(text-en)max-pooling%]这种表达不太一致，因为[%(text-en)max%]指的是[%(text-en)pooling%]的方式，而[%(text-en)video%]指的是[%(text-en)pooling%]的结果所针对的对象。搜了一下好像别的地方也没有人用过。不过这个表达的含义文中做了解释，它指的其实就是：对所有帧的特征进行pooling从而得到整个视频的特征表示。
+
+bq. Video pooling computes video representation over the whole video by pooling all the descriptors from all the frames in a video.
+
+p(noindent). 顺便提一下这里提取特征的思路：[%(text-en)achieve image-based video representation in which local descriptor extraction relies on individual frames alone%]，也许这一点在将来也是可以改变的。
+
+回归正题，本文到底是怎么做的呢？简单地说，就是[*对[%(text-en)CNN%]提取的特征用[%(text-en)VLAD%]（[%(text-en)Vector of Locally Aggregated Descriptors%]）来进行编码，然后用编码之后的特征来训练分类器*]——本文用的分类器是线性支持向量机（[%(text-en)linear Support Vector Machine (SVM)%]），这在[*4.3*]节有提到，作者直接用的["[%(text-en)LIBSVM%]":https://www.csie.ntu.edu.tw/~cjlin/libsvm/]。这部分还有对原来做[%(text-en)average-pooling%]的方式、[%(text-en)Fisher Vector%]和[%(text-en)VLAD%]进行比较和分析，可以参见论文的图1。
+
+[%(para_header)CNN Latent Concept Descriptors (LCD)%] 对于这里所谓的潜在概念描述子，其实就是一个[%(text-en)patch%]对所有[%(text-en)filter%]（卷积核）的响应拼接起来，相当于对原来[%(math-inline)\(a\times a \times M\)%]的向量进行了重新划分，划分成了[%(math-inline)\(a\times a\)%]个[%(math-inline)\(M\)%]维的向量，东西并没有变，只是看的角度变化了，然后给了一个新的名字。总之每一个卷积核就对应了一个概念。看文字部分觉得大概理解了，然而看了图2之后不知道为啥反倒晕了，没看懂 =_=||
+
+之后文中还提到使用了一个[%(text-en)SPP%]层，只是并不是从头训练出来的，而是直接设定了几种不同的窗口大小和步长（[%(text-en)stride%]）。
+
+[%(para_header)向量压缩：Product Quantization%] 最后为了降低存储空间上的开销，同时进行加速，本文对编码后的视频表示采用了[%(text-en)PQ%]做进一步的压缩，这个原理论文里面讲得比较清楚了，主要是两点：
+
+# 将一个向量划分为多个等长的子向量，对应的子向量放在一起进行聚类，用聚类中心（索引）来代表各个子向量。
+# 预先计算好各个聚类中心和对应分类器权值的内积，之后分类的时候就可以用查表法来算最后的分类得分。
+
+h3. 小结
+
+仔细去看这里面用到的东西还是很多了，当然最关键的还是：[%(text-en)CNN%]提取[%(text-en)LCD%][%(math-inline)\(\Rightarrow\)%][%(text-en)VLAD%]编码[%(math-inline)\(\Rightarrow\)%]线性[%(text-en)SVM%]分类器，这样一条线。非常值得一提的是本文的实验确实做得很充分，对各个因素都做了验证，而且结果都是正面的。
+
+h2. Complex Event Detection using Semantic Saliency and Nearly-Isotonic SVM
+
+从标题上看这篇文章是引入了所谓的语义显著性，其针对的问题是这样的：一个视频里面并不是所有的帧都和视频里的事件相关的，有些帧不仅不相关，甚至还可能具有误导性，因此我们需要对各帧和时间的相关性进行评估。有了相关性的排序，一个好处就是让相关性更大的帧对分类产生更大的影响，这样分类结果应该会更准，这里就涉及到得设计一个分类器能够利用这种相关性排序的信息。
+
+虽然问题感觉还挺有意义的，但是对文章暂时提不起什么兴趣来，所以先不看了。看完摘要并不知道是用了什么方法来实现各帧和事件之间相关性的评估，然后扫了一下也没有发现特别吸引人的地方——难道是图太少了而且不好看？总之有一种[_好挤_]的感觉。
+
+h2. Scalable Maximum Margin Matrix Factorization by Active Riemannian Subspace Search
+
+这篇文章是对矩阵分解这个问题重新做了形式化。要解决的问题是：
+
+bq. Existing [%(math-inline)\(M^3F\)%] algorithms, however, either have massive computational cost or require expensive model selection procedures to determine the number of latent factors (i.e. the rank of the matrix to be recovered), making them less practical for large scale data sets.
+
+p(noindent). 解决问题的思路有两点，第一点：
+
+bq. To address these two challenges, in this paper, we formulate [%(math-inline)\(M^3F\)%] with a known number of latent factors as the Riemannian optimization problem on a fixed-rank matrix manifold and present a block-wise nonlinear Riemannian conjugate gradient method to solve it efficiently. 
+
+p(noindent). 第二点：
+
+bq. We then apply a simple and efficient active subspace search scheme to automatically detect the number of latent factors.
+
+p(noindent). 公式好多的样子，暂时也不想看了。
+
+fn1. 报告的演示文稿：["http://valse.mmcheng.net/ftp/20150805/":http://valse.mmcheng.net/ftp/20150805/]
