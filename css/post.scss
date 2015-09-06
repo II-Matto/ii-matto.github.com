@@ -335,6 +335,16 @@ code {
     text-indent: 0em;
 }
 
+#post_content blockquote.code {
+    text-indent: 0em;
+    font-family: Courier New, Consolas;
+    border: 0px;
+}
+
+#post_content blockquote.code p {
+    text-indent: 0em;
+}
+
 #post > footer {
     overflow: hidden;
 }

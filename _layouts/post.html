@@ -62,7 +62,10 @@ layout: html5_base
     </header>
 
     {% assign image_info = site.data.post_side_img[page.path] %}
+    <!--
     <img id="post_side_img" src="{% if image_info.image != null %} {{ site.data.blog_info.res_prefix }}{{ image_info.image }} {% endif %}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
+    -->
+    <img id="post_side_img" src="{% if image_info.image != null %} {{ image_info.image }} {% endif %}" style="top: {{ image_info.top }}; right: {{ image_info.right }}; width: {{ image_info.width }}"></img>
 
     <div id="back-top">
         <a href="#">Top</a>

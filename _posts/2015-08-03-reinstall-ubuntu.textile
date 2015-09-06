@@ -88,7 +88,7 @@ export NODE_PATH="$HOME/app/node-v0.12.7-linux-64:$HOME/app/node-v0.12.7-linux-x
 
 p(noindent). 另外，切记安装[%(text-en)rvm%]的时候不要用[%(text-en)root%]权限，否则后面会各种麻烦和出错，一点不好用，删除都麻烦。反正自己用，所以只要给当前用户装就好了。还有几个点有些忘记了，比方说安装各种包的时候默认不要安装文档，自动进行环境变量的配置（有个[@--auto-dotfiles@]选项）。
 
-在使用[%(text-en)Jekyll%]的时候出了各种问题。第一个问题是[%(text-en)Liquid%]出错，提示信息里面有包含[%(text-en)pygments%]，于是自己重新装了以下[%(text-en)pygments%]，问题依旧，然后发现问题在于[%(text-en)Jekyll%]的版本——不知道中间捣鼓的时候怎么装了3个版本上去，卸载一个版本就好了[3]。第二个问题，也是导致我重装无数次[%(text-en)Ruby%]的问题，就是用[%(text-en)Jekyll%]生成的页面里面出问题，我在[@_config.yml@]中设置的[@excerpt_separator@]完全不起作用了——然而在[%(text-en)Windows 7%]下面都是正常的，为了解决这个问题，我尝试了
+在使用[%(text-en)Jekyll%]的时候出了各种问题。第一个问题是[%(text-en)Liquid%]出错，提示信息里面有包含[%(text-en)pygments%]，于是自己重新装了一下[%(text-en)pygments%]，问题依旧，然后发现问题在于[%(text-en)Jekyll%]的版本——不知道中间捣鼓的时候怎么装了3个版本上去，卸载一个版本就好了[3]。第二个问题，也是导致我重装无数次[%(text-en)Ruby%]的问题，就是用[%(text-en)Jekyll%]生成的页面里面出问题，我在[@_config.yml@]中设置的[@excerpt_separator@]完全不起作用了——然而在[%(text-en)Windows 7%]下面都是正常的，为了解决这个问题，我尝试了
 
 * ["安装[%(text-en)bundler%]":http://bundler.io/#getting-started]，使用[@Gemfile@]来控制到底各个包要装什么版本（和[%(text-en)Github%]端保持一致）
 * 装[%(text-en)rvm%]然后换用2.0版本的[%(text-en)Ruby%]，然而[@bundle update@]升级各种包

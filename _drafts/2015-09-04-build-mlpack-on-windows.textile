@@ -1,0 +1,149 @@
+---
+title: 在Windows下编译mlpack
+categories: [ml]
+tags: [mlpack, armadillo, 程序库编译, CMake]
+date_updated: 2015-09-06
+---
+
+p(content_excerpt). ["[%(text-en)mlpack%]":http://www.mlpack.org]是一个优秀的C++版机器学习程序库，包含稀疏编码、高斯混合模型（[%(text-en)GMM%]）、隐马尔可夫模型（[%(text-en)HMM%]）等众多模型和算法的实现。[%(text-en)mlpack%]在[%(text-en)Linux%]下使用较为方便，而在[%(text-en)Windows%]操作系统下则比较麻烦，尤其是如果使用[%(text-en)Visual Studio%]进行库的编译，主要原因还在于[%(text-en)mlpack%]依赖于[%(text-en)libxml%]、[%(text-en)iconv%]、[%(text-en)zlib%]等第三方库，而这些库本身就不便于在[%(text-en)Windows%]下使用。本文对Windows下编译[%(text-en)mlpack%]的过程进行了比较详细的描述，并在末尾提供了一些有关文件的下载。
+
+<!-- End of Excerpt -->
+
+官方有给出在[%(text-en)Windows%]下编译mlpack的教程，在["[%(text-en)mlpack%]的文档":http://]和["[%(text-en)Github%]上[%(text-en)mlpack%]项目的[%(text-en)Wiki%]":http://]中都有。但是要成功完成这一任务，可能光靠那些还不够，本文会补充一些相关的细节。
+
+目前笔者只编译了以[%(text-en)x86%]作为目标平台的版本，后续如果成功编译出以[%(text-en)x64%]为目标平台的版本，会继续更新本文。[%(text-en)x86%]版本的一个问题就在于内存地址的限制。
+
+h2. 编译以x86作为目标平台的mlpack
+
+[%(para_header)开发环境%]
+
+# 操作系统：[%(text-en)Windows 7%]旗舰版（简体中文）
+# 集成开发环境（[%(text-en)IDE%]）：[%(text-en)Visual Studio Ultimate 2013%]
+# 编译器：[%(text-en)Intel C++ 15.0%][1]
+# [%(text-en)CMake 3.3.1%]
+
+[%(para_header)第三方依赖库%]
+
+# [%(text-en)boost%]：版本[%(text-en)1.56.0%]，用的是["[%(text-en)boost binary%]":http://boost.sourceforge.org]。
+# [%(text-en)armadillo%]：版本[%(text-en)5.400.2%]，基于["源代码":http://]自行编译。
+# [%(text-en)libxml%]、[%(text-en)zlib%]和[%(text-en)iconv%]：版本分别为[%(text-en)2.7.8%]、[%(text-en)1.2.5%]和[%(text-en)1.9.2%]，直接用的["打包好的版本":http://]（只有[%(text-en)win32/x86%]版本，[%(text-en)x64%]版本只有[%(text-en)MinGW%]下可用的[@*.a@]文件，没有[@*.lib@]文件）。[2]
+
+[%(para_header#x86_install_boost)安装boost%] 重新编译会比较麻烦，还是省点事情直接用安装包好了，用各种版本的[%(text-en)boost%]应该都可以（目前最新的是[%(text-en)1.59.0%]版本），记得一定要下针对[%(text-en)x86%]平台的库（如果下了针对不同平台的多个安装包，可以装在同一个目录下，官方说了这样不影响的，反正只是[@*.lib@]和[@*.dll@]不一样而已）。关于[%(text-en)boost%]的几个重要的目录：
+{% highlight sh linenos %}
+boost_install_dir = D:/lib/boost_1_56_0
+boost_include_dir = <boost_install_dir>
+boost_lib_dir = <boost_install_dir>/lib32-msvc-12.0
+{% endhighlight %}
+注意到这里包含目录其实就是安装的根目录，没有单独的[@include@]子目录。
+
+因为我用的是[%(text-en)Intel%]编译器，所以后面编译[%(text-en)mlpack%]的时候实际上是出了一点小麻烦的，提示错误：
+
+bq(code). LINK : fatal error LNK1104: cannot open file 'libboost_program_options-iw-mt-1_56.lib'
+
+p(noindent). 我去<boost_lib_dir>下面找了，确实没有这个文件，但是有名字很像的，比方说[@libboost_program_options-vc120-mt-1_56.lib@]，差别只是在一个<em>[@iw@]</em>和<em>[@vc120@]</em>，那么这个[@iw@]是个什么鬼。查了一下，有找到一个说<em>[@s@]</em>标志是说需要[@static@]静态库，继续搜，最后看到[@iw@]原来是说库得用[%(text-en)Intel%]编译器编译才行[3]，看到这里我差点就要重新生成工程从头来了，不过后面马上说到其实用[%(text-en)vc%]的库也完全不影响，所以只需要改一下[%(text-en)boost%]的配置文件就行。具体来说，就是打开[@<boost_include_dir>/config/auto_link.hpp@]文件（注意[%(text-en)boost%]库里面有好几个[%(text-en)auto_link.hpp%]文件分布在各种地方，除了这个之外其它都不需要改，不要弄错了），然后可以搜索<em>[@elif defined(__ICL)@]</em>（169行），把接下来的[@define BOOST_LIB_TOOLSET "iw"@]（171行）直接改成[@define BOOST_LIB_TOOLSET "vc120"@][4]。当然如果不使用[%(text-en)Intel%]编译器的话就不会用这个问题了，我用[%(text-en)Intel%]编译器主要还是想在编译[%(text-en)armadillo%]的时候用[%(text-en)mkl%]——当然其实用提供的[%(text-en)blas%]和[%(text-en)lapack%]也完全可以的。
+
+[%(para_header)编译armadillo%] armadillo本身是可以不编译直接使用的，用头文件加上所给的blas和lapack库。但是我装了Intel编译器就还是想试试MKL，而且Intel编译器本身编译出来的代码速度也会快一些（应该是库的实现更好而且编译器优化做的也更好？），只是快多少就视情况而定了。
+
+这块需要改CMakeLists.txt，可以在开头添加：[5]
+{% highlight sh linenos %}
+set(CMAKE_GENERATOR_TOOLSET "Intel C++ Compiler XE 15.0" CACHE STRING "Platform Toolset" FORCE)
+set(MKL_ROOT "C:/Program Files (x86)/Intel/Composer XE 2015/mkl" CACHE TYPE STRING)
+{% endhighlight %}
+这样生成的VS2013工程里面使用的就是Intel C++，而且可以找到mkl_rt.lib这个库。但是其实还没有完的，还需要添加一点东西，不过不是在文件开头加，因为似乎加在开头没有用，我加的地方如下所示（第8行代码是我新加的）：
+{% highlight sh linenos %}
+...
+
+## necessary when linking with Intel MKL on Linux systems
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-as-needed")
+endif()
+
+set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /DEF:armadillo.def")
+
+if(CMAKE_COMPILER_IS_GNUCXX)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
+endif()
+
+...
+{% endhighlight %}
+可以看到这里其实是增加了一个链接选项，给了一个armadillo.def指定要导出的符号。为什么会需要这个呢？原因就在于VS下面必须得有dllexport才会导出符号，否则是不会导出的。所以之前我尝试了各种办法都生成不了*.lib文件，只有一个很小的*.dll，而检查*.dll你会发现里面的内容根本就是空的。为了能够在没有dllexport的情况下正确导出符号生成*.lib文件，就需要*.def文件。然后问题来了，这个*.def文件去哪里找？
+
+一种做法就是，先用MinGW编译armadillo，这样可以成功得到可用的*.dll和*.a文件，然后利用*.dll就可以导出符号，然后继而自己创建一个*.def文件了。甚至于可以直接用这个*.def文件继续直接生成VS可用的*.lib——在找到上面的方法之前我就是这么做的，VS下面真的可以用。严谨起见，还是只拿来*.def，然后用VS来生成*.lib。
+
+p(#x86_build_armadillo_cmake). 修改完了CMakeLists.txt，得到了armadillo.def，接下来就开始用CMake来生成VS 2013的工程，编译armadillo库。打开CMake，设置好armadillo的源代码所在的目录和工程的生成目录。
+{% highlight sh linenos %}
+armadillo_src_dir = D:\codebase\math\armadillo\armadillo-5.400.2
+armadillo_build_dir = D:\codebase\math\armadillo\armadillo-5.400.2\build
+{% endhighlight %}
+点击configure，选择编译器为Visual Studio 2013（如果还想编译x64的则到时候相应地选择Visual Studio 2013 Win64）；由于我采用Intel编译器，于是选中了specify native compiler，点击下一步设置icl.exe和ifort.exe的路径（其实这块这个设置大概是没用的，直接选择use default native compiler就好，设置Intel编译器的是加在CMakeLists.txt开头的那两行代码起作用）。完成这一步之后会出现各种选项的配置情况，不出意外的话应该是找到了mkl_rt.lib这个文件。这时候有很多项是标红的，可以手工修改一下install的位置（到时候这下面会自动生成bin、lib、include、share等子目录）。
+{% highlight sh linenos %}
+armadillo_install_dir = D:\lib\armadillo-5.400.2
+{% endhighlight %}
+然后再次点击configure，正常情况下应该没有标红的选项了。最后点击generate，生成VS2013的工程。别忘了把armadillo.def拷贝到工程目录下，即<armadillo_build_dir>。
+
+打开VS工程，
+
+[%(para_header)获取libxml、iconv和zlib%] 所需要的*.lib文件只有win32/x86版本的，而且三个库对应的版本都不是最新版。
+
+[%(para_header)编译[%(text-en)mlpack%]%] 也是需要修改CMakeLists.txt，而且还要修改源代码的几个地方。前者是因为要配置好各个第三方依赖库的路径，尤其是我使用MKL；后者是因为VS中定义了[@max@]这个宏，会导致编译错误。
+
+修改CMakeLists.txt。
+
+修改源代码[6]。这块有一个地方的修改不是很确定，就是改成[@arma::max<>()@]的那块。
+
+另外就是编译时出现boost库的那个问题，["前面部分":#x86_install_boost]已经提到。
+
+用CMake生成VS 2013工程，参考["前面armadillo的说明":#x86_build_armadillo_cmake]，两者的过程类似。打开VS工程，选择Release配置，在ALLBUILD工程上面右键，选择生成，这样就开始编译了，这个过程大概会持续20分钟到半个小时。不出意外的话，这样就好了，你会得到一堆*.exe和一个mlpack.lib文件。最后生成INSTALL这个工程，就会把库和exe都安装到之前在CMake中配置的安装目录下。
+
+还有一点扫尾工作，就是安装的include文件，其实是没有改动的，所以使用的时候还会出错，于是需要再把[@max@]的那几个地方再改一下。到此为止，一切就完成了。
+
+如果还需要其他配置（如Debug）版本的库，那可以更改配置再次进行上面的过程，注意由于安装的位置是相同的，所以记得先把之前安装的Release版本文件给拷贝到其它位置。
+
+[%(para_header)使用[%(text-en)mlpack%]%] 需要添加的头文件目录：
+{% highlight sh linenos %}
+D:\lib\mlpack\include
+D:\lib\boost_1_56_0
+D:\lib\armadillo-5.400.2\include
+D:\lib\mlpack\dep\x86\libxml2-2.7.8.win32\include
+D:\lib\mlpack\dep\x86\iconv-1.9.2.win32\include
+{% endhighlight %}
+需要添加的库目录：
+{% highlight sh linenos %}
+D:\lib\mlpack\$(PlatformTarget)\$(Configuration)\vc12\lib
+D:\lib\boost_1_56_0\lib32-msvc-12.0
+D:\lib\armadillo-5.400.2\$(PlatformTarget)\$(Configuration)\vc12\lib
+{% endhighlight %}
+注意上面我用到了VS 2013预定义的一些宏，其中PlatformTarget对应的是x86或者x64，Configuration对应的是Release、Debug等[7]。需要添加的库包括：
+{% highlight sh linenos %}
+mlpack.lib
+armadillo.lib
+{% endhighlight %}
+另外就是PATH变量，在不添加到系统环境中的条件下，只能每次在VS工程里面修改工程属性：Debugging下的Environment选项，改成：
+
+bq(code). [@PATH=%PATH%;D:\lib\armadillo-5.400.2\$(PlatformTarget)\$(Configuration)\vc12\bin;C:\Program Files (x86)\Intel\Composer XE 2015\redist\$(IntelPlatform)\mkl@]
+
+p(noindent). 这里IntelPlatform对应的是ia32或者intel64，这个是为了找到mkl_rt.dll[8]。如果改了Environment还是提示找不到*.dll，那么记得把这个选项中Inheret ...去掉勾选，勾选之后会在自己添加的路径后面再加一串东西，似乎会导致语法不正确而失效。上面的都配置好了之后，似乎就可以正确使用[%(text-en)mlpack%]了。
+
+h3. 相关文件下载
+
+涉及Intel编译器的一些文件就不分享了，也不要联系笔者索要。[1]
+
+# 编译好的armadillo库文件（不带mkl_rt.dll），提供armadillo.def文件，应该可以用blas和lapack编译出*.lib来。
+# 生成的VS2013工程（不使用Intel C++和MKL，使用blas和lapack）。
+# 编译好的mlpack.lib和各种*.exe（不带mkl_rt.dll和Intel编译器包含的libmm.lib等文件）。
+
+fn1. Intel编译器：["http://":http://]，学生可以免费获得一年的许可证，当然你也可以想其他办法 =_=||。
+
+fn2. 开发者在libxml的["readme.txt":http://]中特意提到没有给出*.def文件，因为那样直接从*.dll导出*.lib会出问题。
+
+fn3. 这是Intel官网上的一个帮助：["http://":http://]。
+
+fn4. 如果是其它的VS版本记得换成相应的：vs2010-vc10/vs2012-vc11/vs2013-vc12/vs2015-vc14。
+
+fn5. 参考：["http://":http://]，这个帖子的回复里面引用了这个页面：["文章标题":http://]。增加这两行主要是因为直接在CMake里面specifiy native compiler不管用，还是会直接使用VC编译器。
+
+fn6. 关于VS中[@max@]的问题，可以参考这个：["文章标题":http://]（这个其实是转载，原文是：["原文链接":http://]）。
+
+fn7. 我文件的组织是按照["OpenCV":http://]中采用的形式，一个典型的路径就是<base_dir>/x86/Release/vc12/lib，这个路径第一级x86表示目标平台，第二级Release表示编译配置，第三级vc12表示编译器版本，第四级lib则表示具体的内容（相应的还有bin，而include的目录由于是不同版本共享的，所以放在了和x86同一层次上，即<base_dir>/include）。这样做的好处一方面是清晰，另一方面是便于使用VS中定义的宏，这样可以对不同版本的库用同一个VS属性表文件，而有了单独的属性表之后，就可以反复使用且只在需要的时候使用，不会因为加到VS统一的属性表里面而导致所有VS工程都会带入这些信息。
+
+fn8. 有了armadillo.lib之后似乎确实不需要mkl_rt.lib了，但是好像mkl_rt.dll还是得要。
