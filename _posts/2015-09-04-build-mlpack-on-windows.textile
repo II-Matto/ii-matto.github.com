@@ -2,18 +2,20 @@
 title: 在Windows下编译mlpack
 categories: [ml]
 tags: [mlpack, armadillo, 程序库编译, CMake]
-date_updated: 2015-09-06
+date_updated: 2015-10-03
 ---
 
-p(content_excerpt). ["[%(text-en)mlpack%]":http://www.mlpack.org]是一个优秀的C++版机器学习程序库，包含稀疏编码、高斯混合模型（[%(text-en)GMM%]）、隐马尔可夫模型（[%(text-en)HMM%]）等众多模型和算法的实现。[%(text-en)mlpack%]在[%(text-en)Linux%]下使用较为方便，而在[%(text-en)Windows%]操作系统下则比较麻烦，尤其是如果使用[%(text-en)Visual Studio%]进行库的编译，主要原因还在于[%(text-en)mlpack%]依赖于[%(text-en)libxml%]、[%(text-en)iconv%]、[%(text-en)zlib%]等第三方库，而这些库本身就不便于在[%(text-en)Windows%]下使用。本文对Windows下编译[%(text-en)mlpack%]的过程进行了比较详细的描述，并在末尾提供了一些有关文件的下载。
+p(content_excerpt). ["[%(text-en)mlpack%]":http://www.mlpack.org]是一个优秀的[%(text-en)C++%]实现的机器学习程序库，包含稀疏编码、高斯混合模型（[%(text-en)GMM%]）、隐马尔可夫模型（[%(text-en)HMM%]）等众多模型和算法的实现。[%(text-en)mlpack%]在[%(text-en)Linux%]下使用较为方便，而在[%(text-en)Windows%]操作系统下则比较麻烦，尤其是如果使用[%(text-en)Visual Studio%]进行库的编译，主要原因还在于[%(text-en)mlpack%]依赖于[%(text-en)libxml%]、[%(text-en)iconv%]、[%(text-en)zlib%]等第三方库，而这些库本身就不便于在[%(text-en)Windows%]下使用。本文对[%(text-en)Windows%]下编译[%(text-en)mlpack%]的过程进行了比较详细的描述，并在末尾提供了一些有关文件的下载。
 
 <!-- End of Excerpt -->
 
+笔者尝试mlpack的起因是想找一个C++实现的LARS（Least Angle Regression），只找到这个还算比较靠谱，而且库里面还包含了很多其它算法，也许以后能够能够用上。目前笔者已经成功编译了以[%(text-en)x86%]和[%(text-en)x64%]作为目标平台的版本，其中[%(text-en)x86%]版本的一个问题就在于内存地址的限制。然而必须要说明的是，笔者最终没能使用mlpack，原因是调用mlpack的LARS得到的结果存在问题，和我之前用Matlab版本代码得到的结果不一致，而且其实结果完全就不对，甚至出现了NaN。后续有时间我会再做尝试，也找找出问题的原因——到底是我调用的不对还是因为mlpack中对LARS的实现有问题，抑或是我编译出的库问题。目前先只记录编译的过程。
+
 官方有给出在[%(text-en)Windows%]下编译mlpack的教程，在["[%(text-en)mlpack%]的文档":http://]和["[%(text-en)Github%]上[%(text-en)mlpack%]项目的[%(text-en)Wiki%]":http://]中都有。但是要成功完成这一任务，可能光靠那些还不够，本文会补充一些相关的细节。
 
-目前笔者只编译了以[%(text-en)x86%]作为目标平台的版本，后续如果成功编译出以[%(text-en)x64%]为目标平台的版本，会继续更新本文。[%(text-en)x86%]版本的一个问题就在于内存地址的限制。
-
 h2. 编译以x86作为目标平台的mlpack
+
+这一部分工作相对容易，因为[%(text-en)libxml%]、[%(text-en)iconv%]、[%(text-en)zlib%]都有用Visual Studio编译好的版本，可以直接拿过来用。
 
 [%(para_header)开发环境%]
 
@@ -85,7 +87,7 @@ armadillo_install_dir = D:\lib\armadillo-5.400.2
 
 [%(para_header)获取libxml、iconv和zlib%] 所需要的*.lib文件只有win32/x86版本的，而且三个库对应的版本都不是最新版。
 
-[%(para_header)编译[%(text-en)mlpack%]%] 也是需要修改CMakeLists.txt，而且还要修改源代码的几个地方。前者是因为要配置好各个第三方依赖库的路径，尤其是我使用MKL；后者是因为VS中定义了[@max@]这个宏，会导致编译错误。
+[%(para_header)编译mlpack%] 也是需要修改CMakeLists.txt，而且还要修改源代码的几个地方。前者是因为要配置好各个第三方依赖库的路径，尤其是我使用MKL；后者是因为VS中定义了[@max@]这个宏，会导致编译错误。
 
 修改CMakeLists.txt。
 
@@ -99,7 +101,7 @@ armadillo_install_dir = D:\lib\armadillo-5.400.2
 
 如果还需要其他配置（如Debug）版本的库，那可以更改配置再次进行上面的过程，注意由于安装的位置是相同的，所以记得先把之前安装的Release版本文件给拷贝到其它位置。
 
-[%(para_header)使用[%(text-en)mlpack%]%] 需要添加的头文件目录：
+[%(para_header)使用mlpack%] 需要添加的头文件目录：
 {% highlight sh linenos %}
 D:\lib\mlpack\include
 D:\lib\boost_1_56_0
@@ -131,6 +133,14 @@ h3. 相关文件下载
 # 编译好的armadillo库文件（不带mkl_rt.dll），提供armadillo.def文件，应该可以用blas和lapack编译出*.lib来。
 # 生成的VS2013工程（不使用Intel C++和MKL，使用blas和lapack）。
 # 编译好的mlpack.lib和各种*.exe（不带mkl_rt.dll和Intel编译器包含的libmm.lib等文件）。
+
+h2. 编译以x64作为目标平台的mlpack
+
+这块所有的库都需要重新编译，所以会比较繁琐一点。
+
+h3. 相关文件下载
+
+使用Intel编译器和不使用Intel编译器。
 
 fn1. Intel编译器：["http://":http://]，学生可以免费获得一年的许可证，当然你也可以想其他办法 =_=||。
 
