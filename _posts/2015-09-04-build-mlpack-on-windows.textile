@@ -51,17 +51,18 @@ p(noindent). 我去<boost_lib_dir>下面找了，确实没有这个文件，但�
 set(CMAKE_GENERATOR_TOOLSET "Intel C++ Compiler XE 15.0" CACHE STRING "Platform Toolset" FORCE)
 set(MKL_ROOT "C:/Program Files (x86)/Intel/Composer XE 2015/mkl" CACHE TYPE STRING)
 {% endhighlight %}
-这样生成的VS2013工程里面使用的就是Intel C++，而且可以找到mkl_rt.lib这个库。但是其实还没有完的，还需要添加一点东西，不过不是在文件开头加，因为似乎加在开头没有用，我加的地方如下所示（第5行代码是我新加的）：
+这样生成的VS2013工程里面使用的就是Intel C++，而且可以找到mkl_rt.lib这个库。但是其实还没有完的，还需要添加一点东西，不过不是在文件开头加，因为似乎加在开头没有用，我加的地方如下所示（第6行代码是我新加的）：
 {% highlight sh linenos %}
+...
+## necessary when linking with Intel MKL on Linux systems
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
   set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,--no-as-needed")
 endif()
-
 set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} /DEF:armadillo.def")
-
 if(CMAKE_COMPILER_IS_GNUCXX)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2")
 endif()
+...
 {% endhighlight %}
 可以看到这里其实是增加了一个链接选项，给了一个armadillo.def指定要导出的符号。为什么会需要这个呢？原因就在于VS下面必须得有dllexport才会导出符号，否则是不会导出的。所以之前我尝试了各种办法都生成不了*.lib文件，只有一个很小的*.dll，而检查*.dll你会发现里面的内容根本就是空的。为了能够在没有dllexport的情况下正确导出符号生成*.lib文件，就需要*.def文件。然后问题来了，这个*.def文件去哪里找？
 
